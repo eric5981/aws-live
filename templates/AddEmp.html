@@ -24,6 +24,12 @@
 			border-radius: 5px;
 		}
 
+            .btn:hover {   /* top and bottom that button hover will change to green and word change to white and 0.2 second transtion time  */
+                background-color: #4CAF50;
+                color: white;
+				transition-duration: 0.2s;
+            }
+
 		h1 {
 			color: rgb(112, 77, 145);
 			font-size: 35px;
@@ -58,6 +64,19 @@
 			border-color: #70e1f5;
 			outline-color: #70e1f5
 		}
+
+        .avatarImg {   /* for upload image that part circle  */
+            background-position: center;
+            transform: translateY(-5%);
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 100%;
+            border: solid 1px black;
+            background-color: white;
+            cursor: pointer;
+        }
+
 	</style>
 	<title>Add Employee Information</title>
 </head>
@@ -72,6 +91,9 @@
 
 					<button class="btn" type="submit" formaction="/getemp" style="height: 45px; width: 100%; color:white; font:oblique;">Get Employee Information</button><br><br>
 
+					<image id="SprofileAvatar" class="avatarImg" src="../Image/profile.png" />    <!--upload profile image part~-->
+					<input type="file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" /> <br /><br /><br />
+
 					<b>Employee ID:</b><br> <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" type="number" name="emp_id" autofocus size="40"><br><br>
 
 					<b>First Name:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="first_name"><br><br>
@@ -82,7 +104,9 @@
 
 					<b>Location:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="location"><br><br>
 
-					<b>Image:</b><br /> <input type=file name="emp_image_file" style="height: 25px; font-size: 14pt; color: grey;margin-top:5px"> <br><br>
+					<!--<b>Image:</b><br /> <input type=file name="emp_image_file" style="height: 25px; font-size: 14pt; color: grey;margin-top:5px"> <br><br>   here hide first because image move to line 93 94 already~-->
+
+
 
 					<button class="btn" type="submit" style="height: 45px; width: 100%; color: white; size: 5; font:oblique;">Update Database</button>
 				</form>
@@ -93,3 +117,20 @@
 	</font>
 </center>
 </html>
+
+<script type="text/javascript">
+	var avatar = document.getElementById("SprofileAvatar");
+	var fileuploadctrl = document.getElementById("FileUpload1");
+	avatar.onclick = function () {
+		fileuploadctrl.click();
+	}
+	function showPreview(input) {
+		if (input.files && input.files[0]) {
+			var ImageDir = new FileReader();
+			ImageDir.onload = function (e) {
+				avatar.setAttribute('src', e.target.result);
+			}
+			ImageDir.readAsDataURL(input.files[0]);
+		}
+	}
+</script>
