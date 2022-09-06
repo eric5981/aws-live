@@ -1,21 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-<center>
-	<font color="DodgerBlue" size="5" style="font-family: avenir">
-		<body bgcolor="lightgrey">
-			<h1>SAVE SUCCESSFUL</h1><br>
-			<h2>Following Employee has been added to the database</h2><br>
-			<h2>{{ name }}</h2><br>
-			<title>Add Emp Output</title>
-				<form action="http://3.134.115.108:80/" autocomplete="on" method = "GET">
+	<style type="text/css">
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+			width: 800px;
+			margin: auto;
+			margin-top:150px;
+			padding: 5px;
+			background-color: rgb(227, 233, 252);
+			border-radius: 5px;
+		}
 
-					<button type="submit" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GO BACK</button><br><br>
+		.btn {
+			border: none;
+			outline: 0;
+			display: inline-block;
+			padding: 7px;
+			color: white;
+			background-color: rgb(42, 49, 64);
+			text-align: center;
+			cursor: pointer;
+			font-size: 15px;
+			border-radius: 5px;
+		}
+
+		.btn:hover { /* top and bottom that button hover will change to green and word change to white and 0.2 second transtion time  */
+				background-color: #4CAF50;
+				color: white;
+				transition-duration: 0.2s;
+		}
+
+		h1 {
+			color: rgb(112, 77, 145);
+			font-size: 35px;
+			letter-spacing: 5px;
+			font-weight: bold;
+			font-style: italic;
+			text-align: center;
+			margin: 0px 0px 20px 0px;
+			padding: 10px 10px;
+			text-shadow: 1px 1px 5px grey; /* x, y, shadow spread, color   */
+		}
+	</style>
+	<center>
+		<font size="5" style="font-family: avenir">
+			<body style="background-color: rgb(233, 245, 247);">
+				<div class="card">
+				<h1>SAVE SUCCESSFUL</h1>
+				<h3>Following Employee has been added to the database:</h3>
+				<h3>{{ name }}</h3><br>
+				<title>Add Emp Output</title>
+				<form action="http://3.134.115.108:80/" autocomplete="on" method="GET">
+
+					<button class="btn" type="submit" style="height: 45px; width: 100%; color:white; font:oblique;">Go Back</button><br><br>
 
 				</form>
-		</body>
-	</font>
-</center>
+					</div>
+			</body>
+		</font>
+	</center>
 </head>
 <body>
 
