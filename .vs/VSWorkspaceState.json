@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\templates"
   ],
-  "SelectedNode": "\\C:\\Users\\USER\\Source\\Repos\\aws-live",
+  "SelectedNode": "\\templates\\GetEmpOutput.html",
   "PreviewInSolutionExplorer": false
 }
