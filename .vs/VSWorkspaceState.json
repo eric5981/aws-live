@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\templates"
+    "\\templates",
+    "\\templates\\css"
   ],
-  "SelectedNode": "\\templates\\GetEmpOutput.html",
   "PreviewInSolutionExplorer": false
 }
