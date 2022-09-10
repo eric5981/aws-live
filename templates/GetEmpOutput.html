@@ -1,39 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style type="text/css">
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            width: 600px;
+            margin: auto;
+            padding: 5px;
+            background-color: rgb(227, 233, 252);
+            border-radius: 5px;
+        }
+
+		.btn {
+			border: none;
+			outline: 0;
+			display: inline-block;
+			padding: 7px;
+			color: white;
+			background-color: rgb(42, 49, 64);
+			text-align: center;
+			cursor: pointer;
+			font-size: 15px;
+			border-radius: 5px;
+		}
+
+			.btn:hover { /* top and bottom that button hover will change to green and word change to white and 0.2 second transtion time  */
+				background-color: #4CAF50;
+				color: white;
+				transition-duration: 0.2s;
+			}
+
+        h1 {
+            color: rgb(112, 77, 145);
+            font-size: 35px;
+            letter-spacing: 5px;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            margin: 0px 0px 20px 0px;
+            padding: 10px 10px;
+            text-shadow: 1px 1px 5px grey; /* x, y, shadow spread, color   */
+        }
+	</style>
 	<title>Employee Information</title>
 </head>
 <center>
 	<font color="black" size="5" style="font-family: avenir">
+		<div class="card">
+		<h1>Employee Information</h1>
 
-		<h1 style="color: DodgerBlue">Employee Information</h1>
-
-		<body bgcolor="lightgrey">
+		<body style="background-color: rgb(233, 245, 247);">
 
 			<form>
 
 				<div>
 
-			  		Employee ID:<br> {{ id }} <br><br>
+					<b>Employee ID:</b><br> {{ id }} <br><br>
 
-			  		First Name:<br> {{ fname }} <br><br>
+					<b>First Name:</b><br> {{ fname }} <br><br>
 
-			  		Last Name:<br> {{ lname }} <br><br>
+					<b>Last Name:</b><br> {{ lname }} <br><br>
 
-			  		Primary Interestt:<br> {{ interest }} <br><br>
+					<b>Primary Interest:</b><br> {{ interest }} <br><br>
 
-			  		Location:<br> {{ location }} <br><br>
+					<b>Location:</b><br> {{ location }} <br><br>
 
-			  		Image URL: <br> {{ image_url }} <br><br>
+					Image URL: <br> {{ image_url }} <br><br>
 
-			  		<button type="submit" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;" formaction="http://3.134.115.108:80/getemp">RESET</button><br><br>
+					<button class="btn" type="submit" style="height: 45px; width: 100%; color:white; font:oblique;" formaction="http://3.134.115.108:80/getemp">RESET</button><br><br>
 
-			  	</div>
+				</div>
 
 			</form>
 
 		</body>
-
+			</div>
 	</font>
 </center>
 </html>
