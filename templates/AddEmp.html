@@ -1,71 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<style type="text/css">
-		.card {
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-			max-width: 600px;
-			margin: auto;
-			padding: 5px;
-			background-color: rgb(227, 233, 252);
-			border-radius: 5px
-		}
+    <style type="text/css">
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: auto;
+            padding: 5px;
+            background-color: rgb(227, 233, 252);
+            border-radius: 5px
+        }
 
-		.btn {
-			border: none;
-			outline: 0;
-			display: inline-block;
-			padding: 7px;
-			color: white;
-			background-color: rgb(42, 49, 64);
-			text-align: center;
-			cursor: pointer;
-			font-size: 15px;
-			border-radius: 5px;
-		}
+        .btn {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 7px;
+            color: white;
+            background-color: rgb(42, 49, 64);
+            text-align: center;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 5px;
+        }
 
-        .btn:hover { /* top and bottom that button hover will change to green and word change to white and 0.2 second transtion time  */
+            .btn:hover { /* top and bottom that button hover will change to green and word change to white and 0.2 second transtion time  */
                 background-color: #4CAF50;
                 color: white;
                 transition-duration: 0.2s;
+            }
+
+        h1 {
+            color: rgb(112, 77, 145);
+            font-size: 35px;
+            letter-spacing: 5px;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            margin: 0px 0px 20px 0px;
+            padding: 10px 10px;
+            text-shadow: 1px 1px 5px grey; /* x, y, shadow spread, color   */
         }
 
-		h1 {
-			color: rgb(112, 77, 145);
-			font-size: 35px;
-			letter-spacing: 5px;
-			font-weight: bold;
-			font-style: italic;
-			text-align: center;
-			margin: 0px 0px 20px 0px;
-			padding: 10px 10px;
-			text-shadow: 1px 1px 5px grey;  /* x, y, shadow spread, color   */
-		}
+        a:link,
+        a:visited {
+            background-color: white;
+            color: black;
+            border: 2px solid #acb6e5;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-		a:link,
-		a:visited {
-			background-color: white;
-			color: black;
-			border: 2px solid #acb6e5;
-			border-radius: 5px;
-			padding: 10px 20px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-		}
+        a:hover,
+        a:active {
+            background-color: #acb6e5;
+            color: white;
+        }
 
-		a:hover,
-		a:active {
-			background-color: #acb6e5;
-			color: white;
-		}
+        input:focus {
+            border-color: #70e1f5;
+            outline-color: #70e1f5
+        }
 
-		input:focus {
-			border-color: #70e1f5;
-			outline-color: #70e1f5
-		}
-
-        .avatarImg {   /* for upload image that part circle  */
+        .avatarImg { /* for upload image that part circle  */
             background-position: center;
             transform: translateY(-5%);
             width: 140px;
@@ -76,61 +76,64 @@
             background-color: white;
             cursor: pointer;
         }
+    </style>
+    <title>Add Employee Information</title>
 
-	</style>
-	<title>Add Employee Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+
 </head>
 <center>
-	<font color="black" size="4" style="font-family: avenir">
-		<div class="card">
-			<h1>Employee Database</h1>
+    <font color="black" size="4" style="font-family: avenir">
+        <div class="card">
+            <h1>Employee Database</h1>
 
-			<body style="background-color: rgb(233, 245, 247) ">
+            <body style="background-color: rgb(233, 245, 247) ">
+                <form action="/addemp" autocomplete="on" method="get" enctype="multipart/form-data">
+                    <!-- form with method get because need retrieve sql thing after btnGetEmp click  -->
+                    <button class="btn" type="submit" formaction="/getemp" style="height: 45px; width: 100%; color:white; font:oblique;">Get Employee Information</button><br><br>
+                </form>
+                <form action="/addemp" autocomplete="on" method="POST" enctype="multipart/form-data">
+                    <!-- form with method POST because need post thing after btnUpdateDatabase click  -->
+                    <image id="SprofileAvatar" class="avatarImg" src="../Image/profile_upload.png" />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
+                    <input type="file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" /> <br />Click to Upload Image<br /><br />
 
-				<form action="/addemp" autocomplete="on" method="POST" enctype="multipart/form-data">
+                    <b>Employee ID:</b><br> <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" type="number" name="emp_id" autofocus size="40"><br><br>
 
-					<button class="btn" type="submit" formaction="/getemp" style="height: 45px; width: 100%; color:white; font:oblique;">Get Employee Information</button><br><br>
+                    <b>First Name:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="first_name"><br><br>
 
-					<image id="SprofileAvatar" class="avatarImg" src="../Image/profile_upload.png" />    <!--upload profile image part~-->
-					<input type="file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" /> <br />Click to Upload Image<br /><br />
+                    <b>Last Name:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="last_name"><br><br>
 
-					<b>Employee ID:</b><br> <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" type="number" name="emp_id" autofocus size="40"><br><br>
+                    <b>Primary Skills:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="pri_skill"><br><br>
 
-					<b>First Name:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="first_name"><br><br>
+                    <b>Location:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="location"><br><br>
 
-					<b>Last Name:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="last_name"><br><br>
+                    <b>Basic Salary:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="number" name="emp_salary"><br><br>
 
-					<b>Primary Skills:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="pri_skill"><br><br>
+                    <!--<b>Image:</b><br /> <input type=file name="emp_image_file" style="height: 25px; font-size: 14pt; color: grey;margin-top:5px"> <br><br>   here hide first because image move to line 93 94 already~-->
 
-					<b>Location:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="location"><br><br>
-
-					<b>Basic Salary:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="number" name="location"><br><br>
-
-					<!--<b>Image:</b><br /> <input type=file name="emp_image_file" style="height: 25px; font-size: 14pt; color: grey;margin-top:5px"> <br><br>   here hide first because image move to line 93 94 already~-->
-
-					<button class="btn" type="submit" style="height: 45px; width: 100%; color: white; size: 5; font:oblique;">Update Database</button>
-				</form>
-				<br />
-				<a href="/about">About Us</a>
-			</body>
-		</div>
-	</font>
+                    <button class="btn" type="submit" style="height: 45px; width: 100%; color: white; size: 5; font:oblique;">Update Database</button>
+                </form>
+                <br />
+                <a href="/about">About Us</a>
+            </body>
+        </div>
+    </font>
 </center>
 </html>
 
 <script type="text/javascript">
-	var avatar = document.getElementById("SprofileAvatar");
-	var fileuploadctrl = document.getElementById("FileUpload1");
-	avatar.onclick = function () {
-		fileuploadctrl.click();
-	}
-	function showPreview(input) {
-		if (input.files && input.files[0]) {
-			var ImageDir = new FileReader();
-			ImageDir.onload = function (e) {
-				avatar.setAttribute('src', e.target.result);
-			}
-			ImageDir.readAsDataURL(input.files[0]);
-		}
-	}
+    var avatar = document.getElementById("SprofileAvatar");
+    var fileuploadctrl = document.getElementById("FileUpload1");
+    avatar.onclick = function () {
+        fileuploadctrl.click();
+    }
+    function showPreview(input) {
+        if (input.files && input.files[0]) {
+            var ImageDir = new FileReader();
+            ImageDir.onload = function (e) {
+                avatar.setAttribute('src', e.target.result);
+            }
+            ImageDir.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
