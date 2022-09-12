@@ -95,7 +95,7 @@
                 <form action="/addemp" autocomplete="on" method="POST" enctype="multipart/form-data">
                     <!-- form with method POST because need post thing after btnUpdateDatabase click  -->
                     <image id="SprofileAvatar" class="avatarImg" src="../Image/profile_upload.png" />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
-                    <input type="file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" /> <br />Click to Upload Image<br /><br />
+                    <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" /> <br />Click to Upload Image<br /><br />
 
                     <b>Employee ID:</b><br> <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" type="number" name="emp_id" autofocus size="40"><br><br>
 
@@ -107,7 +107,7 @@
 
                     <b>Location:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="location"><br><br>
 
-                    <b>Basic Salary:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="number" name="emp_salary"><br><br>
+                    <b>Basic Salary:</b><br> <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="number" name="salary"><br><br>
 
                     <!--<b>Image:</b><br /> <input type=file name="emp_image_file" style="height: 25px; font-size: 14pt; color: grey;margin-top:5px"> <br><br>   here hide first because image move to line 93 94 already~-->
 

@@ -23,14 +23,14 @@ table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])  #start page because got /
 def home():
-    return render_template('TestAddEmp.html')
+    return render_template('AddEmp.html')
 
 #@app.route("/", methods=['GET', 'POST'])  backup
 #def home():
 #    return render_template('AddEmp.html')
 
 
-@app.route("/about", methods=['POST'])
+@app.route("/about", methods=['GET', 'POST'])
 def about():
     return render_template('AboutUs.html', about=about)
 
@@ -85,7 +85,19 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
+@app.route("/getemp", methods=['GET', 'POST'])
+def GetEmp():
+    return render_template('GetEmp.html')
+
+@app.route("/fetchinfo", methods=['GET', 'POST'])
+def FetchInfo():
+    return render_template('GetEmpOutput.html')
+
 @app.route("/attendance", methods=['GET', 'POST'])
+def Attendance():
+    return render_template('Attendance.html')
+
+@app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
     if request.method == 'POST':
         now = datetime.now()
