@@ -91,7 +91,18 @@ def GetEmp():
 
 @app.route("/fetchinfo", methods=['GET', 'POST'])
 def FetchInfo():
-    return render_template('GetEmpOutput.html')
+    try:
+        emp_id = request.form['emp_id']
+        cursor = db_conn.cursor()
+
+        fetch_info_sql = "SELECT * FROM employee WHERE emp_id = %s"
+        cursor.execute(fetch_emp_sql,(emp_id))
+        emp = cursor.fetchall()
+
+        (id, fname, lname, priskill, location, salary) = emp[0]
+        image_url = show_image(custombucket)
+
+    return render_template('GetEmpOutput.html', id=id, fname=fname, lname=lname, skill=skill, location=location, salary=salary, image_url=image_url)
 
 def show_image(bucket):
     s3_client = boto3.client('s3')
