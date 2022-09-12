@@ -4,7 +4,7 @@
 	<style type="text/css">
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-            width: 600px;
+            width: 800px;
             margin: auto;
             padding: 5px;
             background-color: rgb(227, 233, 252);
@@ -44,7 +44,7 @@
 	</style>
 	<title>Employee Information</title>
 </head>
-<center>
+
 	<font color="black" size="5" style="font-family: avenir">
 		<div class="card">
 		<h1>Employee Information</h1>
@@ -67,8 +67,12 @@
 
 					Image URL: <br> {{ image_url }} <br><br>
 
-					<button class="btn" type="submit" style="height: 45px; width: 100%; color:white; font:oblique;" formaction="http://3.134.115.108:80/getemp">RESET</button><br><br>
-
+					<b>Payroll</b><br>
+					<b>Basic Salary:</b> {{ salary }}
+					&nbsp;&nbsp;&nbsp;<b>Reduction:</b> <input style="height: 25px; font-size: 14pt; border-radius: 5px" type="number" name="reduction" autofocus size="40">
+					&nbsp;&nbsp;&nbsp;<b>Net Salary:</b> <br><br>
+					<button class="btn" type="submit" style="height: 45px; width: 100%; color:white; font:oblique;" formaction="http://3.134.115.108:80/getemp">Reset</button><br><br>
+					<button class="btn" type="submit" formaction="http://3.134.115.108:80/" style="height: 45px; width: 100%; size: 5; font:oblique;" method="GET">Take Attendance</button>
 				</div>
 
 			</form>
@@ -76,5 +80,5 @@
 		</body>
 			</div>
 	</font>
-</center>
+
 </html>
