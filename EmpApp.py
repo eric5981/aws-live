@@ -85,6 +85,10 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
+@app.route("/getemp", methods=['GET', 'POST'])
+def GetEmp():
+    return render_template('GetEmp.html')
+
 @app.route("/attendance", methods=['GET', 'POST'])
 def TakeAttendance():
     if request.method == 'POST':
