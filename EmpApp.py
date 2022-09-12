@@ -89,6 +89,10 @@ def AddEmp():
 def GetEmp():
     return render_template('GetEmp.html')
 
+@app.route("/fetchinfo", methods=['GET', 'POST'])
+def FetchInfo():
+    return render_template('GetEmpOutput.html')
+
 @app.route("/attendance", methods=['GET', 'POST'])
 def Attendance():
     return render_template('Attendance.html')
@@ -101,8 +105,6 @@ def TakeAttendance():
 
         attendance = request.form.getlist('attendance')
         emp_id = request.form['emp_id']
-
-@app.route("/attendance", methods=['GET', 'POST'])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
