@@ -101,8 +101,7 @@ def FetchInfo():
 
         (id, fname, lname, priskill, location, salary) = emp[0]
         image_url = show_image(custombucket)
-
-    return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=skill,location=location,salary=salary,image_url=image_url)
+        return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=skill,location=location,salary=salary,image_url=image_url)
 
 def show_image(bucket):
     s3_client = boto3.client('s3')
