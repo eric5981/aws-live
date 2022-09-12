@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\templates"
+    "\\templates",
+    "\\templates\\css"
   ],
-  "SelectedNode": "\\templates\\Attendance.html",
+  "SelectedNode": "\\templates\\vendor",
   "PreviewInSolutionExplorer": false
 }
