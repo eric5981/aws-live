@@ -97,6 +97,7 @@ def TakeAttendance():
 
         attendance = request.form.getlist('attendance')
         emp_id = request.form['emp_id']
+        return render_template('Attendance.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
