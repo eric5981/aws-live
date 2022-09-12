@@ -30,7 +30,7 @@ def home():
 #    return render_template('AddEmp.html')
 
 
-@app.route("/about", methods=['POST'])
+@app.route("/about", methods=['GET', 'POST'])
 def about():
     return render_template('AboutUs.html', about=about)
 
@@ -98,6 +98,8 @@ def TakeAttendance():
         attendance = request.form.getlist('attendance')
         emp_id = request.form['emp_id']
         return render_template('Attendance.html')
+
+@app.route("/attendance", methods=['GET', 'POST'])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
