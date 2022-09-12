@@ -104,8 +104,6 @@ def FetchInfo():
             image_url = show_image(custombucket)
             return render_template('GetEmpOutput.html', id=id,fname=fname,lname=lname,priSkill=priSkill,location=location,salary=salary,image_url=image_url)
 
-    return render_template('GetEmpOutput.html')
-
 @app.route("/attendance", methods=['GET', 'POST'])
 def Attendance():
     return render_template('Attendance.html')
