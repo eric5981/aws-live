@@ -90,6 +90,10 @@ def GetEmp():
     return render_template('GetEmp.html')
 
 @app.route("/attendance", methods=['GET', 'POST'])
+def Attendance():
+    return render_template('Attendance.html')
+
+@app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
     if request.method == 'POST':
         now = datetime.now()
@@ -97,7 +101,6 @@ def TakeAttendance():
 
         attendance = request.form.getlist('attendance')
         emp_id = request.form['emp_id']
-        return render_template('Attendance.html')
 
 @app.route("/attendance", methods=['GET', 'POST'])
 
