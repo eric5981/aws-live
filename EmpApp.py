@@ -96,7 +96,7 @@ def FetchInfo():
         cursor = db_conn.cursor()
 
         fetch_info_sql = "SELECT * FROM employee WHERE emp_id = %s"
-        cursor.execute(fetch_emp_sql,(emp_id))
+        cursor.execute(fetch_info_sql,(emp_id))
         emp = cursor.fetchall()
 
         (id, fname, lname, priskill, location, salary) = emp[0]
