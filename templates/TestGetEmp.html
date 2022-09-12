@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            width: 800px;
+            margin: auto;
+            margin-top: 150px;
+            padding: 5px;
+            background-color: rgb(227, 233, 252);
+            border-radius: 5px;
+        }
+
+        .btn {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 7px;
+            color: white;
+            background-color: rgb(42, 49, 64);
+            text-align: center;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+
+            .btn:hover { /* top and bottom that button hover will change to green and word change to white and 0.2 second transtion time  */
+                background-color: #4CAF50;
+                color: white;
+                transition-duration: 0.2s;
+            }
+
+        h1 {
+            color: rgb(112, 77, 145);
+            font-size: 35px;
+            letter-spacing: 5px;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            margin: 0px 0px 20px 0px;
+            padding: 10px 10px;
+            text-shadow: 1px 1px 5px grey; /* x, y, shadow spread, color   */
+        }
+
+        input:focus {
+            border-color: #70e1f5;
+            outline-color: #70e1f5
+        }
+    </style>
+    <title>Get Employee Information</title>
+</head>
+<h1 class="mt-4 ">Employee Information</h1>
+<body style="background-color: rgb(233, 245, 247) ">
+    <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="small mb-1 ">Employee ID</label>
+                <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="number" name="emp_id" autofocus size="40">
+            </div>
+        </div>
+    </div>
+</body>
+
+
+    <center>
+        <font color="black" size="5" style="font-family: avenir">
+            <div class="card">
+                <h1>Employee Information</h1>
+
+                <body style="background-color: rgb(233, 245, 247);">
+
+                    <form action="/fetchdata" autocomplete="on" method="POST">
+
+                        <!--<h2 style="color: grey">Enter Employee ID</h2>-->
+
+                        <b>Employee ID:</b><br> <input style="height: 25px; font-size: 14pt; border-radius: 5px" type="number" name="emp_id" autofocus size="40"><br><br>
+                        <br />
+
+                        <button class="btn" type="submit" style="height: 45px; width: 100%; size: 5; font:oblique;">Fetch Info</button><br><br>
+
+                        <button class="btn" type="submit" formaction="http://3.134.115.108:80/" style="height: 45px; width: 100%; size: 5; font:oblique;" method="GET">Go to Update Database Page</button>
+
+                    </form>
+            </div>
+
+    </font>
+</center>
+</html>
