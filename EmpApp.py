@@ -28,7 +28,7 @@ def home():
 
 @app.route("/about", methods=['POST'])
 def about():
-    return render_template('www.intellipaat.com')
+    return render_template('AboutUs.html', about=about)
 
 
 @app.route("/addemp", methods=['POST'])
@@ -81,6 +81,14 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
+@app.route("/attendance", methods=['GET', 'POST'])
+def TakeAttendance():
+    if request.method == 'POST':
+        now = datetime.now()
+        dt_string = now.strftime("%d%m%Y%H%M%S")
+
+        attendance = request.form.getlist('attendance')
+        emp_id = request.form['emp_id']
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
