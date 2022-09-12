@@ -41,6 +41,14 @@
             padding: 10px 10px;
             text-shadow: 1px 1px 5px grey; /* x, y, shadow spread, color   */
         }
+
+        #pic {
+            /* float: left; */
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-left: 50px;
+        }
 	</style>
 	<title>Employee Information</title>
 </head>
@@ -54,6 +62,13 @@
 			<form>
 
 				<div>
+
+					{% for emp_image_file_name_in_s3 in image_url %}
+
+					<img id="pic" src={{ emp_image_file_name_in_s3 }}>
+
+					{% endfor %}
+					<br><br>
 
 					<b>Employee ID:</b><br> {{ id }} <br><br>
 
@@ -71,6 +86,8 @@
 					<b>Basic Salary:</b> {{ salary }}
 					&nbsp;&nbsp;&nbsp;<b>Reduction:</b> <input style="height: 25px; font-size: 14pt; border-radius: 5px" type="number" name="reduction" autofocus size="40">
 					&nbsp;&nbsp;&nbsp;<b>Net Salary:</b> <br><br>
+					<b>Today's Attendance</b><br>
+					No record<br /><br />
 					<button class="btn" type="submit" style="height: 45px; width: 100%; color:white; font:oblique;" formaction="http://3.134.115.108:80/getemp">Reset</button><br><br>
 					<button class="btn" type="submit" formaction="http://3.134.115.108:80/" style="height: 45px; width: 100%; size: 5; font:oblique;" method="GET">Take Attendance</button>
 				</div>
