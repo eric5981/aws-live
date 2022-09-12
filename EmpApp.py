@@ -23,7 +23,7 @@ table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])  #start page because got /
 def home():
-    return render_template('AddEmp.html')
+    return render_template('AddEmployee.html')
 
 #@app.route("/", methods=['GET', 'POST'])  backup
 #def home():
@@ -87,7 +87,7 @@ def AddEmp():
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template('GetEmp.html')
+    return render_template('GetEmployee.html') 
 
 @app.route("/fetchinfo", methods=['GET', 'POST'])
 def FetchInfo():
