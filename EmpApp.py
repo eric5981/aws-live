@@ -132,7 +132,7 @@ def Attendance():
         id = request.form['emp_id']
         cursor = db_conn.cursor()
         fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
-        cursor.execute(fetch_info_sql,(emp_id))
+        cursor.execute(fetch_info_sql,(id))
         emp = cursor.fetchall()
         (fname, lname) = emp[0]
         emp_name = "" + fname + " " + lname
