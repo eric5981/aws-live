@@ -134,5 +134,9 @@ def TakeAttendance():
         attendance = request.form.getlist('attendance')
         emp_id = request.form['emp_id']
 
+@app.route("/payroll", methods=['GET', 'POST'])
+def Attendance():
+    return render_template('EmployeePayroll.html',emp_name=emp_name)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

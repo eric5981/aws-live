@@ -314,8 +314,14 @@
 
         small,
         .small {
-            font-size: 80%;
+            font-size: 100%;
             font-weight: 400;
+        }
+
+        medium,
+        .medium {
+            font-size: 120%;
+            font-weight: 600;
         }
 
         .avatarImg { /* for upload image that part circle  */
@@ -339,18 +345,96 @@
     <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
         <div class="card-body">
             <!--Processing...-->
-            <!-- image > Employee ID > First name > Last name > Primary Skill > Location > Payroll (maybe show net salary ok d) > Today attendance default = No record 
-                3 button (Update Information > Take Attendance > Back to Update Database page tonight after dinner do-->
+            <!-- image > Employee ID > First name > Last name > Primary Skill > Location > Payroll (maybe show net salary ok d) > Today attendance default = No record
+    3 button (Update Information > Take Attendance > Back to Update Database page tonight after dinner do-->
+            <div class="d-flex justify-content-center mb-1 mt-4">
+                <!--{% for emp_image_file_name_in_s3 in image_url %}-->
+                <!--<img id="pic" class="avatarImg" src={{ emp_image_file_name_in_s3 }}>-->
+                <image id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
+                <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
+                <!--{% endfor %}-->
+            </div>
+
+            <div class="mb-3">
+                <label class="medium mb-1 ">Employee ID</label><br />
+                <label class="small mb-1 ">{{ id }}</label>
+                <!--<input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="text" name="emp_id" autofocus size="40" value="{{ id }}" readonly="readonly">-->
+            </div>
+
+            <div class="row gx-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="medium mb-1">Firstname</label>
+                        <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="first_name" class="form-control form-control-user" value="{{ fname }}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="medium mb-1">Lastname</label>
+                        <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="last_name" class="form-control form-control-user" value="{{ lname }}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="medium mb-1">Primary Skills</label>
+                        <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="pri_skill" class="form-control form-control-user" value="{{ skill }}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="medium mb-1">Location</label>
+                        <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="location" class="form-control form-control-user" value="{{ location }}">
+                    </div>
+                </div>
+            </div>
+            <!--Image URL: <br> {{ image_url }} <br><br>-->
+
+            <div class="mb-3">
+                <label class="medium mb-1 ">Net Salary</label>
+                <button class="col-md-3 btn btn-block btn-info" type="submit" style="height: 40px; width: 50%; color: white; font:oblique;" formaction="/payroll" method="GET">Update Payroll</button>
+
+                <br />
+                <label class="small mb-1 ">{{ salary }}</label>
+
+                <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="salary" class="form-control form-control-user" value="{{ salary }}" readonly="readonly">-->
+            </div>
+
+            <div class="mb-3">
+                <label class="medium mb-1 ">Today Attendance</label> <br />
+                <label class="small mb-1 ">No Record</label>
+
+                <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="attendance" class="form-control form-control-user" value="No Record" readonly="readonly">-->
+            </div>
 
 
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="http://3.134.115.108:80/getemp">Update Information</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance" method="GET">Take Attendance</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/">Back to Update Database Page</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
 
 
-    			<form> <!--reference-->
+    			<!--<form>--> <!--reference-->
 
-				<div>
+				<!--<div>
 
 					{% for emp_image_file_name_in_s3 in image_url %}
 
@@ -367,11 +451,11 @@
 
 					<b>Primary Skills:</b><br> {{ skill }} <br><br>
 
-					<b>Location:</b><br> {{ location }} <br><br>
+					<b>Location:</b><br> {{ location }} <br><br>-->
 
 					<!--Image URL: <br> {{ image_url }} <br><br>-->
 
-					<b>Payroll</b><br>
+					<!--<b>Payroll</b><br>
 					<b>Basic Salary:</b> {{ salary }}
 					&nbsp;&nbsp;&nbsp;<b>Reduction:</b> <input style="height: 25px; font-size: 14pt; border-radius: 5px" type="number" name="reduction" autofocus size="40">
 					&nbsp;&nbsp;&nbsp;<b>Net Salary:</b> <br><br>
@@ -384,8 +468,25 @@
 					</center>
 				</div>
 
-			</form>
+			</form>-->
 
 
 </body>
 </html>
+
+<script type="text/javascript">
+    var avatar = document.getElementById("SprofileAvatar");
+    var fileuploadctrl = document.getElementById("FileUpload1");
+    avatar.onclick = function () {
+        fileuploadctrl.click();
+    }
+    function showPreview(input) {
+        if (input.files && input.files[0]) {
+            var ImageDir = new FileReader();
+            ImageDir.onload = function (e) {
+                avatar.setAttribute('src', e.target.result);
+            }
+            ImageDir.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
