@@ -355,10 +355,11 @@
                     <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
                     <!--{% endfor %}-->
                 </div>
+                <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="emp_id" class="form-control form-control-user" value="{{ id }}">
 
                 <div class="mb-3">
                     <label class="medium mb-1 ">Employee ID</label><br />
-                    <label class="small mb-1 ">{{ id }}</label>
+                    <label class="small mb-1">{{ id }}</label>
                     <!--<input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="text" name="emp_id" autofocus size="40" value="{{ id }}" readonly="readonly">-->
                 </div>
 
