@@ -354,7 +354,7 @@
             <form action="/addemp" autocomplete="on" method="POST" enctype="multipart/form-data">
                 <div class="d-flex justify-content-center mb-1 mt-4">
                     <image id="SprofileAvatar" class="avatarImg" src="../Image/profile_upload.png" />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
-                    <input type="file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
+                    <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
                 </div>
                 <div class="d-flex justify-content-center">
                     <label class="small mb-1 ">Click here to upload image</label>
@@ -397,7 +397,7 @@
 
                 <div class="mb-3">
                     <label class="small mb-1 ">Basic Salary</label>
-                    <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="number" name="emp_salary" autofocus size="40">
+                    <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="number" name="salary" autofocus size="40">
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-block btn-success" type="submit" style="height: 45px; width: 100%; color: white; font:oblique;">Update Database</button>

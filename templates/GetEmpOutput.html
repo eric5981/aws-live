@@ -42,12 +42,16 @@
             text-shadow: 1px 1px 5px grey; /* x, y, shadow spread, color   */
         }
 
-        #pic {
-            /* float: left; */
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-left: 50px;
+        .avatarImg { /* for upload image that part circle  */
+            background-position: center;
+            transform: translateY(-5%);
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 100%;
+            border: solid 1px black;
+            background-color: white;
+            cursor: pointer;
         }
 	</style>
 	<title>Employee Information</title>
@@ -65,7 +69,7 @@
 
 					{% for emp_image_file_name_in_s3 in image_url %}
 
-					<img id="pic" src={{ emp_image_file_name_in_s3 }}>
+					<img id="pic" class="avatarImg" src={{ emp_image_file_name_in_s3 }}>
 
 					{% endfor %}
 					<br><br>
@@ -76,11 +80,11 @@
 
 					<b>Last Name:</b><br> {{ lname }} <br><br>
 
-					<b>Primary Interest:</b><br> {{ interest }} <br><br>
+					<b>Primary Skills:</b><br> {{ skill }} <br><br>
 
 					<b>Location:</b><br> {{ location }} <br><br>
 
-					Image URL: <br> {{ image_url }} <br><br>
+					<!--Image URL: <br> {{ image_url }} <br><br>-->
 
 					<b>Payroll</b><br>
 					<b>Basic Salary:</b> {{ salary }}
@@ -88,8 +92,11 @@
 					&nbsp;&nbsp;&nbsp;<b>Net Salary:</b> <br><br>
 					<b>Today's Attendance</b><br>
 					No record<br /><br />
-					<button class="btn" type="submit" style="height: 45px; width: 100%; color:white; font:oblique;" formaction="http://3.134.115.108:80/getemp">Reset</button><br><br>
-					<button class="btn" type="submit" formaction="/attendance" style="height: 45px; width: 100%; size: 5; font:oblique;" method="GET">Take Attendance</button>
+					<center>
+						<button class="btn" type="submit" style="height: 45px; color:white; font:oblique;" formaction="http://3.134.115.108:80/getemp">Update Information</button>&nbsp;
+						<button class="btn" type="submit" formaction="/attendance" style="height: 45px; ; size: 5; font:oblique;" method="GET">Take Attendance</button>&nbsp;
+						<button class="btn" type="submit" formaction="/attendance" style="text-decoration: none; color: white; height: 45px; color: white; font: oblique; text-align:center;" formaction="/">Back to Update Database Page</button>
+					</center>
 				</div>
 
 			</form>
