@@ -126,15 +126,16 @@ def show_image(bucket):
    # print("[INFO] : The contents inside show_image = ", public_urls)
     return public_urls
 
-@app.route("/attendance/<id>", methods=['GET', 'POST'])
-def Attendance(id):
+@app.route("/attendance", methods=['GET', 'POST'])
+def Attendance():
+    emp_id = request.form['emp_id']
     cursor = db_conn.cursor()
-    fetch_info_sql = "SELECT * FROM employee WHERE emp_id = %s"
-    cursor.execute(fetch_info_sql,(id))
+    fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
+    cursor.execute(fetch_info_sql,(emp_id))
     emp = cursor.fetchall()
-    (emp_id, fname, lname, priskill, location, salary) = emp[0]
+    (fname, lname) = emp[0]
     emp_name = "" + fname + " " + lname
-    return render_template('Attendance.html',id=id,emp_name=emp_name)
+    return render_template('Attendance.html',id=emp_id,emp_name=emp_name)
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
