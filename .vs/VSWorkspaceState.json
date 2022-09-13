@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\templates",
-    "\\templates\\css"
+    "\\templates"
   ],
-  "SelectedNode": "\\EmpApp.py",
+  "SelectedNode": "\\templates\\GetEmpOutput.html",
   "PreviewInSolutionExplorer": false
 }
