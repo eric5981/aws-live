@@ -124,7 +124,13 @@ def show_image(bucket):
 
 @app.route("/attendance", methods=['GET', 'POST'])
 def Attendance():
-    return render_template('Attendance.html')
+    emp_id = request.form['emp_id']
+    fname = "SELECT first_name FROM employee WHERE emp_id = %s"
+    cursor.execute(fname,(emp_id))
+    lname = "SELECT last_name FROM employee WHERE emp_id = %s"
+    cursor.execute(lname,(emp_id))
+    emp_name = "" + fname + " " + lname
+    return render_template('Attendance.html',emp_name=emp_name)
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():

@@ -87,7 +87,7 @@
 					<!--Image URL: <br> {{ image_url }} <br><br>-->
 
 					<b>Payroll</b><br>
-					<b>Basic Salary:</b> {{ salary }}
+					<b>Basic Salary:</b> {{ "{:.2f}".format(salary)}}
 					&nbsp;&nbsp;&nbsp;<b>Reduction:</b> <input style="height: 25px; font-size: 14pt; border-radius: 5px" type="number" name="reduction" autofocus size="40">
 					&nbsp;&nbsp;&nbsp;<b>Net Salary:</b> <br><br>
 					<b>Today's Attendance</b><br>
