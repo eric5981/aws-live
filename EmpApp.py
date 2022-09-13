@@ -129,7 +129,7 @@ def show_image(bucket):
 @app.route("/attendance/<id>", methods=['GET', 'POST'])
 def Attendance(id):
     cursor = db_conn.cursor()
-    fetch_info_sql = "SELECT * FROM employee WHERE emp_id = %s"
+    fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
     cursor.execute(fetch_info_sql,(id))
     emp = cursor.fetchall()
     (fname, lname) = emp[0]
