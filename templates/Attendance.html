@@ -49,25 +49,27 @@
     <title></title>
 </head>
 <body style="background-color: rgb(233, 245, 247);">
-    <font color="black" size="5" style="font-family: avenir">
-        <div class="card">
-            <h1>Take Attendance</h1>
-            <center>
-                <b>Take attendance for {{emp_name}}</b><br /><br />
-            </center>
-            <div id="radiogroup" style="text-align:center">
-                <input type="radio" name="attendance" value="Present" checked> Present<br>
-                <input type="radio" name="attendance" value="Absent"> Absent<br>
-                <input type="radio" name="attendance" value="MC"> Leave<br>
+    <form method="get">
+        <font color="black" size="5" style="font-family: avenir">
+            <div class="card">
+                <h1>Take Attendance</h1>
+                <center>
+                    <b>Take attendance for {{emp_name}}</b><br /><br />
+                </center>
+                <div id="radiogroup" style="text-align:center">
+                    <input type="radio" name="attendance" value="Present" checked> Present<br>
+                    <input type="radio" name="attendance" value="Absent"> Absent<br>
+                    <input type="radio" name="attendance" value="MC"> Leave<br>
+                </div>
+                <br />
+                <div class="input-box-transparent">
+                    <input type="hidden" name="emp_id" value="{{ id }}">
+                </div>
+                <div class="button1">
+                    <input class="btn" formaction="/takeattendance" name="save" value="Save Attendance">
+                </div>
             </div>
-            <br />
-            <div class="input-box-transparent">
-                <input type="hidden" name="emp_id" value="{{ id }}">
-            </div>
-            <div class="button1">
-                <input class="btn" formaction="/takeattendance" name="save" value="Save Attendance">
-            </div>
-        </div>
         </font>
+    </form>
 </body>
 </html>
