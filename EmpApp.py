@@ -128,14 +128,17 @@ def show_image(bucket):
 
 @app.route("/attendance", methods=['GET', 'POST'])
 def Attendance():
-    emp_id = request.form['emp_id']
-    cursor = db_conn.cursor()
-    fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
-    cursor.execute(fetch_info_sql,(emp_id))
-    emp = cursor.fetchall()
-    (fname, lname) = emp[0]
-    emp_name = "" + fname + " " + lname
-    return render_template('Attendance.html',id=emp_id,emp_name=emp_name)
+    try:
+        emp_id = request.form['emp_id']
+        cursor = db_conn.cursor()
+        fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
+        cursor.execute(fetch_info_sql,(emp_id))
+        emp = cursor.fetchall()
+        (fname, lname) = emp[0]
+        emp_name = "" + fname + " " + lname
+        return render_template('Attendance.html',id=emp_id,emp_name=emp_name)
+    except Exception as e:
+        return str(e)
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
