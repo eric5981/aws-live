@@ -101,7 +101,9 @@ def FetchInfo():
 
         (id, fname, lname, priskill, location, salary) = emp[0]
         image_url = show_image(custombucket)
-        return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
+        #        return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
+
+        return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
     except Exception as e:
         return str(e)
 
