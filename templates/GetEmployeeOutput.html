@@ -355,7 +355,7 @@
                     <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
                     <!--{% endfor %}-->
                 </div>
-                <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="emp_id" class="form-control form-control-user" value="{{ id }}">
+                <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="emp_id" class="form-control form-control-user" value="{{ id }}">-->
 
                 <div class="mb-3">
                     <label class="medium mb-1 ">Employee ID</label><br />
@@ -366,13 +366,13 @@
                 <div class="row gx-3">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="medium mb-1">Firstname</label>
+                            <label class="medium mb-1">First Name</label>
                             <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="first_name" class="form-control form-control-user" value="{{ fname }}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="medium mb-1">Lastname</label>
+                            <label class="medium mb-1">Last Name</label>
                             <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="last_name" class="form-control form-control-user" value="{{ lname }}">
                         </div>
                     </div>
@@ -420,7 +420,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance" method="GET">Take Attendance</button>
+                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance/<id>" method="GET">Take Attendance</button>
                         </div>
                     </div>
                     <div class="col-md-4">

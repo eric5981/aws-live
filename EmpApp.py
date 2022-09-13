@@ -127,8 +127,14 @@ def show_image(bucket):
     return public_urls
 
 @app.route("/attendance", methods=['GET', 'POST'])
-def Attendance():
-    return render_template('Attendance.html',emp_name=emp_name)
+def Attendance(id):
+    cursor = db_conn.cursor()
+    fname = "SELECT first_name FROM employee WHERE emp_id = %s"
+    cursor.execute(fname,(id))
+    lname = "SELECT last_name FROM employee WHERE emp_id = %s"
+    cursor.execute(lname,(id))
+    emp_name = "" + first_name + " " + last_name
+    return render_template('Attendance.html',id=id,emp_name=emp_name)
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
