@@ -126,7 +126,7 @@ def show_image(bucket):
    # print("[INFO] : The contents inside show_image = ", public_urls)
     return public_urls
 
-@app.route("/attendance", methods=['GET', 'POST'])
+@app.route("/attendance/<id>", methods=['GET', 'POST'])
 def Attendance(id):
     cursor = db_conn.cursor()
     fname = "SELECT first_name FROM employee WHERE emp_id = %s"
