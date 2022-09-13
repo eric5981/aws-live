@@ -101,7 +101,6 @@ def FetchInfo():
 
         (id, fname, lname, priskill, location, salary) = emp[0]
         image_url = show_image(custombucket)
-        render_template("Attendance.html",id=id)
         return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
     except Exception as e:
         return str(e)
@@ -124,12 +123,6 @@ def show_image(bucket):
 
 @app.route("/attendance", methods=['GET', 'POST'])
 def Attendance():
-    emp_id = request.form['emp_id']
-    fname = "SELECT first_name FROM employee WHERE emp_id = %s"
-    cursor.execute(fname,(emp_id))
-    lname = "SELECT last_name FROM employee WHERE emp_id = %s"
-    cursor.execute(lname,(emp_id))
-    emp_name = "" + fname + " " + lname
     return render_template('Attendance.html',emp_name=emp_name)
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
