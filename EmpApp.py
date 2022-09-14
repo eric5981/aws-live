@@ -204,8 +204,7 @@ def Payroll():
 @app.route("/payrollupdate", methods=['GET', 'POST'])
 def PayrollUpdate():
     emp_id = request.form['emp_id']
-    first_name = "abc"
-    last_name = "bcd"
+    name = request.form['emp_name']
    # pri_skill = request.form['pri_skill']
     #location = request.form['location']
 
@@ -221,7 +220,6 @@ def PayrollUpdate():
     #cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
     db_conn.commit()
     #image_url = show_image(custombucket)
-    name = first_name + " " + last_name
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
 if __name__ == '__main__':
