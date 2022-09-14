@@ -151,7 +151,7 @@ def Update():
     cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
     db_conn.commit()
     image_url = show_image(custombucket)
-    return render_template('GetEmployeeOutput.html')
+    return render_template('GetEmployee.html')
 
 @app.route("/attendance", methods=['GET', 'POST'])
 def Attendance():
