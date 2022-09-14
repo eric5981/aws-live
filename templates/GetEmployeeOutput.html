@@ -344,7 +344,7 @@
 <body style="background-color: rgb(233, 245, 247) ">
     <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
         <div class="card-body">
-            <form autocomplete="on" method="POST">
+            <form autocomplete="on">
                 <div class="d-flex justify-content-center mb-1 mt-4">
                     <!--{% for emp_image_file_name_in_s3 in image_url %}-->
                     <!--<img id="pic" class="avatarImg" src={{ emp_image_file_name_in_s3 }}>-->
@@ -417,7 +417,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance">Take Attendance</button>
+                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance" formmethod="post">Take Attendance</button>
                         </div>
                     </div>
                     <div class="col-md-4">
