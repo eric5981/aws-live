@@ -25,7 +25,6 @@
             cursor: pointer;
             font-size: 15px;
             border-radius: 5px;
-            width:100%
         }
 
             .btn:hover { /* top and bottom that button hover will change to green and word change to white and 0.2 second transtion time  */
@@ -46,33 +45,22 @@
             text-shadow: 1px 1px 5px grey; /* x, y, shadow spread, color   */
         }
     </style>
-    <title>Take Attendance</title>
+    <title>Successfully Take Attendance</title>
 </head>
-<body style="background-color: rgb(233, 245, 247);">
-    <form autocomplete="on">
-        <font color="black" size="5" style="font-family: avenir">
-            <div class="card">
-                <h1>Take Attendance</h1>
-                <center>
-                    <b>Take attendance for {{emp_name}}</b><br /><br />
-                </center>
-                <div id="radiogroup" style="text-align:center">
-                    <input type="radio" name="attendance" value="Present" checked> Present<br>
-                    <input type="radio" name="attendance" value="Absent"> Absent<br>
-                    <input type="radio" name="attendance" value="Leave"> Leave<br>
+<body>
+    <form action="/getemp" autocomplete="on" method = "POST">
+    <center>
+        <font size="5" style="font-family: avenir">
+            <body style="background-color: rgb(233, 245, 247);">
+                <div class="card">
+                    <h1>TAKE ATTENDANCE SUCCESSFUL</h1>
+                    <h3>Following Employee attendance has been taken:</h3>
+                    <h3>{{ name }}</h3><br>
+                    <button class="btn" style="height: 45px; width: 100%; color:white; font:oblique;">Go Back</button><br><br>
                 </div>
-                <br />
-                <div class="input-box-transparent">
-                    <input type="hidden" name="emp_id" value="{{ id }}">
-                </div>
-                <div class="input-box-transparent">
-                    <input type="hidden" name="datetime" value="">
-                </div>
-                <div class="button1">
-                    <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/takeattendance" formmethod="post">Save Attendance</button>
-                </div>
-            </div>
+            </body>
         </font>
-    </form>
+    </center>
+        </form>
 </body>
 </html>

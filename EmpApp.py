@@ -3,6 +3,7 @@ from pymysql import connections
 import os
 import boto3
 from config import *
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -98,15 +99,23 @@ def FetchInfo():
     try:
         emp_id = request.form['emp_id']
         cursor = db_conn.cursor()
-
         fetch_info_sql = "SELECT * FROM employee WHERE emp_id = %s"
         cursor.execute(fetch_info_sql,(emp_id))
         emp = cursor.fetchall()
-
         (id, fname, lname, priskill, location, salary) = emp[0]
         image_url = show_image(custombucket)
+
+        att_emp_sql = "SELECT datetime, status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s"
+        mycursor = db_conn.cursor()
+        rows_count = mycursor.execute(att_emp_sql,(emp_id))
+        if rows_count == 0:
+            dt = "No"
+            status = "Record"
+        else:
+            att_result = mycursor.fetchall()
+            (dt,status) = att_result[-1]
         #return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
-        return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
+        return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url,dt=dt,status=status)
     except Exception as e:
         return str(e)
 
@@ -139,12 +148,24 @@ def Attendance():
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
-    if request.method == 'POST':
-        now = datetime.now()
-        dt_string = now.strftime("%d%m%Y%H%M%S")
+    now = datetime.now()
+    dt = now.strftime("%d%m%Y%H%M%S")
+    dt_string = now.strftime('%d/%m/%Y %H:%M:%S')
 
-        attendance = request.form.getlist('attendance')
-        emp_id = request.form['emp_id']
+    attendance = request.form.getlist('attendance')
+    emp_id = request.form['emp_id']
+    att_id = emp_id + dt
+    dt = request.form['datetime'] + dt_string
+    insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s,%s)'
+    cursor = db_conn.cursor()
+    cursor.execute(insert_att_sql, (att_id,dt,attendance,emp_id))
+    fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
+    cursor.execute(fetch_info_sql,(emp_id))
+    emp = cursor.fetchall()
+    (fname, lname) = emp[0]
+    emp_name = "" + fname + " " + lname
+    db_conn.commit()
+    return render_template('AttendanceOutput.html', name=emp_name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
