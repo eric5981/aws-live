@@ -111,14 +111,14 @@ def FetchInfo():
         date_string = now.strftime("%d/%m/%Y")
         rows_count = mycursor.execute(att_emp_sql,(emp_id,date_string))
         if rows_count == 0:
-            date = "No"
-            time = "Record"
-            status = ""
+            dt = "No"
+            status = "Record"
         else:
             att_result = mycursor.fetchall()
             (date,time,status) = att_result[-1]
+            dt = date + " " + time
         #return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
-        return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url,date=date,time=time,status=status)
+        return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url,dt=dt,status=status)
     except Exception as e:
         return str(e)
 
