@@ -105,7 +105,7 @@ def FetchInfo():
         (id, fname, lname, priskill, location, salary) = emp[0]
         image_url = show_image(custombucket)
 
-        att_emp_sql = "SELECT attendance.datetime, attendance.status FROM attendance INNER JOIN employee ON attendance.emp_id = employee.emp_id WHERE employee.emp_id = %s"
+        att_emp_sql = "SELECT datetime, status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s"
         mycursor = db_conn.cursor()
         mycursor.execute(att_emp_sql, (emp_id))
         att_result = mycursor.fetchall()
