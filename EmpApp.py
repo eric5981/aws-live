@@ -141,7 +141,7 @@ def Attendance():
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
     now = datetime.now()
-    dt_string = now.strftime("%d%m%Y%H%M%S")
+    dt_string = now.strftime('%d/%m/%Y %H:%M:%S')
 
     attendance = request.form.getlist('attendance')
     emp_id = request.form['emp_id']
