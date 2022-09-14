@@ -140,18 +140,15 @@ def Attendance():
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
-    try:
-        now = datetime.now()
-        dt_string = now.strftime("%d%m%Y%H%M%S")
+    now = datetime.now()
+    dt_string = now.strftime("%d%m%Y%H%M%S")
 
-        attendance = request.form.getlist('attendance')
-        emp_id = request.form['emp_id']
-        insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s)'
-        cursor = db_conn.cursor()
-        cursor.execute(insert_att_sql, (dt_string,attendance,emp_id))
-        db_conn.commit()
-    except Exception as e:
-        return str(e)
+    attendance = request.form.getlist('attendance')
+    emp_id = request.form['emp_id']
+    insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s)'
+    cursor = db_conn.cursor()
+    cursor.execute(insert_att_sql, (dt_string,attendance,emp_id))
+    db_conn.commit()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
