@@ -108,11 +108,12 @@ def FetchInfo():
         att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s"
         mycursor = db_conn.cursor()
         now = datetime.now()
+        d_string = now.strftime("%d/%m/%Y")
         rows_count = mycursor.execute(att_emp_sql,(emp_id))
         if rows_count == 0:
             date = "No"
             time = "Record"
-            status = ""
+            status = " "
         else:
             att_result = mycursor.fetchall()
             (date,time,status) = att_result[-1]
