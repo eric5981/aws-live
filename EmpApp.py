@@ -112,8 +112,8 @@ def FetchInfo():
             att_result = mycursor.fetchall()
             (dt,status) = att_result[-1]
         else:
-            dt = None
-            status = None
+            dt = No
+            status = Record
         #return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
         return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url,dt=dt,status=status)
     except Exception as e:
