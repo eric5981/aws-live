@@ -90,9 +90,9 @@ def AddEmp():
 def GetEmp():
     return render_template('GetEmployee.html') 
 
-@app.route("/payroll", methods=['GET', 'POST'])
-def Payroll():
-    return render_template('EmployeePayroll.html') 
+#@app.route("/payroll", methods=['GET', 'POST'])
+#def Payroll():
+#    return render_template('EmployeePayroll.html') 
 
 @app.route("/fetchinfo", methods=['GET', 'POST'])
 def FetchInfo():
