@@ -146,10 +146,10 @@ def TakeAttendance():
     attendance = request.form.getlist('attendance')
     emp_id = request.form['emp_id']
     att_id = emp_id + dt_string
-    datetime = request.form['datetime'] + dt_string
+    dt = request.form['datetime'] + dt_string
     insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s,%s)'
     cursor = db_conn.cursor()
-    cursor.execute(insert_att_sql, (att_id,datetime,attendance,emp_id))
+    cursor.execute(insert_att_sql, (att_id,dt,attendance,emp_id))
     db_conn.commit()
 
 if __name__ == '__main__':
