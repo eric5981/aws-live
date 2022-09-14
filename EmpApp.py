@@ -107,8 +107,8 @@ def FetchInfo():
 
         att_emp_sql = "SELECT datetime, status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s"
         mycursor = db_conn.cursor()
-        exist = mycursor.execute(att_emp_sql,(emp_id))
-        if exist is None:
+        rows_count = mycursor.execute(att_emp_sql,(emp_id))
+        if rows_count == 0:
             dt = "No"
             status = "Record"
         else:
