@@ -141,11 +141,12 @@ def Attendance():
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
     now = datetime.now()
+    dt = now.strftime("%d%m%Y%H%M%S")
     dt_string = now.strftime('%d/%m/%Y %H:%M:%S')
 
     attendance = request.form.getlist('attendance')
     emp_id = request.form['emp_id']
-    att_id = emp_id + now
+    att_id = emp_id + dt
     dt = request.form['datetime'] + dt_string
     insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s,%s)'
     cursor = db_conn.cursor()
