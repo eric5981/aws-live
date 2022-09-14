@@ -201,5 +201,26 @@ def Payroll():
     emp_deduction = ededuction
     return render_template('EmployeePayroll.html',id=id,emp_name=emp_name,emp_salary=emp_salary,emp_deduction=emp_deduction)
 
+@app.route("/payrollupdate", methods=['GET', 'POST'])
+def PayrollUpdate():
+    emp_id = request.form['emp_id']
+   # first_name = request.form['first_name']
+  #  last_name = request.form['last_name']
+   # pri_skill = request.form['pri_skill']
+    #location = request.form['location']
+
+    salary = request.form['salary']
+    deduction = request.form['deduction']
+    #emp_image_file = request.files['emp_image_file']
+    update_sql = "UPDATE employee SET salary = %d, deduction = %d WHERE emp_id = %s"
+    #update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(update_sql, (salary, deduction))
+    #cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
+    db_conn.commit()
+    #image_url = show_image(custombucket)
+    name = first_name + " " + last_name
+    return render_template('UpdateOutput.html',id=emp_id,name=name)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
