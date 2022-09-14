@@ -155,7 +155,7 @@ def Update():
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
 @app.route("/payroll", methods=['GET', 'POST'])
-def Attendance():
+def Payroll():
     id = request.form['emp_id']
     cursor = db_conn.cursor()
     fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
