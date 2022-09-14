@@ -344,10 +344,7 @@
 <body style="background-color: rgb(233, 245, 247) ">
     <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
         <div class="card-body">
-            <!--Processing...-->
-            <!-- image > Employee ID > First name > Last name > Primary Skill > Location > Payroll (maybe show net salary ok d) > Today attendance default = No record
-    3 button (Update Information > Take Attendance > Back to Update Database page tonight after dinner do-->
-            <form>
+            <form autocomplete="on">
                 <div class="d-flex justify-content-center mb-1 mt-4">
                     <!--{% for emp_image_file_name_in_s3 in image_url %}-->
                     <!--<img id="pic" class="avatarImg" src={{ emp_image_file_name_in_s3 }}>-->
@@ -360,7 +357,7 @@
                 <div class="mb-3">
                     <label class="medium mb-1 ">Employee ID</label><br />
                     <label hidden class="small mb-1" name="emp_id">{{ id }}</label>
-                    <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="text" name="emp_id" autofocus size="40" value="{{ id }}" readonly="readonly">
+                    <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="hidden" name="emp_id" autofocus size="40" value="{{ id }}" >
                 </div>
 
                 <div class="row gx-3">
@@ -420,12 +417,12 @@
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance" method="GET">Take Attendance</button>
+                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance" formmethod="post">Take Attendance</button>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/">Back to Update Database Page</button>
+                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/" formmethod="get">Back to Update Database Page</button>
                         </div>
                     </div>
                 </div>
