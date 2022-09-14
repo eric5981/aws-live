@@ -56,7 +56,6 @@
                 <center>
                     <b>Take attendance for {{emp_name}}</b><br /><br />
                 </center>
-                <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="hidden" name="emp_id" autofocus size="40" value="{{ id }}">
                 <div id="radiogroup" style="text-align:center">
                     <input type="radio" name="attendance" value="Present" checked> Present<br>
                     <input type="radio" name="attendance" value="Absent"> Absent<br>
@@ -67,7 +66,7 @@
                     <input type="hidden" name="emp_id" value="{{ id }}">
                 </div>
                 <div class="button1">
-                    <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/takeattendance" formmethod="get">Save Attendance</button>
+                    <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/takeattendance" formmethod="post">Save Attendance</button>
                 </div>
             </div>
         </font>
