@@ -188,5 +188,16 @@ def TakeAttendance():
     db_conn.commit()
     return render_template('AttendanceOutput.html', name=emp_name)
 
+@app.route("/payroll", methods=['GET', 'POST'])
+def Payroll():
+    id = request.form['emp_id']
+    cursor = db_conn.cursor()
+    fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
+    cursor.execute(fetch_info_sql,(id))
+    emp = cursor.fetchall()
+    (fname, lname) = emp[0]
+    emp_name = "" + fname + " " + lname
+    return render_template('EmployeePayroll.html',id=id,emp_name=emp_name)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
