@@ -140,7 +140,7 @@ def Attendance():
 
 @app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
-    if request.method == 'POST':
+    try:
         now = datetime.now()
         dt_string = now.strftime("%d%m%Y%H%M%S")
 
