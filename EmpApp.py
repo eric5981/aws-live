@@ -104,7 +104,7 @@ def FetchInfo():
         emp = cursor.fetchall()
         (id, fname, lname, priskill, location, salary, deduction) = emp[0]
         image_url = show_image(custombucket)
-
+        emp_netsalary = salary - deduction
         att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s AND date = %s"
         mycursor = db_conn.cursor()
         now = datetime.now()
@@ -118,7 +118,7 @@ def FetchInfo():
             (date,time,status) = att_result[-1]
             dt = date + " " + time
         #return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
-        return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url,dt=dt,status=status)
+        return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,emp_netsalary=emp_netsalary,image_url=image_url,dt=dt,status=status)
     except Exception as e:
             return str(e)
 
