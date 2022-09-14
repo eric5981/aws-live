@@ -107,9 +107,13 @@ def FetchInfo():
 
         att_emp_sql = "SELECT datetime, status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s"
         mycursor = db_conn.cursor()
-        mycursor.execute(att_emp_sql, (emp_id))
-        att_result = mycursor.fetchall()
-        (dt,status) = att_result[-1]
+        rows_count = mycursor.execute(att_emp_sql)
+        if rows_count > 0:
+            att_result = mycursor.fetchall()
+            (dt,status) = att_result[-1]
+        else:
+            dt = None
+            status = None
         #return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
         return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url,dt=dt,status=status)
     except Exception as e:
