@@ -150,6 +150,8 @@ def TakeAttendance():
         cursor = db_conn.cursor()
         cursor.execute(insert_att_sql, (dt_string,attendance,emp_id))
         db_conn.commit()
+    except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
