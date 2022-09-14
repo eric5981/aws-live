@@ -105,14 +105,13 @@ def FetchInfo():
         (id, fname, lname, priskill, location, salary) = emp[0]
         image_url = show_image(custombucket)
 
-        att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s AND date = %s"
+        att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s"
         mycursor = db_conn.cursor()
         now = datetime.now()
-        date_string = now.strftime('%d/%m/%Y')
-        rows_count = mycursor.execute(att_emp_sql,(emp_id, date_string))
+        rows_count = mycursor.execute(att_emp_sql,(emp_id))
         if rows_count == 0:
             date = "No"
-            time="Record"
+            time = "Record"
             status = ""
         else:
             att_result = mycursor.fetchall()
