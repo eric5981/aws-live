@@ -152,6 +152,7 @@ def TakeAttendance():
     cursor = db_conn.cursor()
     cursor.execute(insert_att_sql, (att_id,dt,attendance,emp_id))
     db_conn.commit()
+    return render_template('GetEmployeeOutput.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
