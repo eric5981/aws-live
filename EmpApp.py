@@ -152,7 +152,7 @@ def TakeAttendance():
     cursor = db_conn.cursor()
     cursor.execute(insert_att_sql, (att_id,dt,attendance,emp_id))
     fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
-    cursor.execute(fetch_info_sql,(id))
+    cursor.execute(fetch_info_sql,(emp_id))
     emp = cursor.fetchall()
     (fname, lname) = emp[0]
     emp_name = "" + fname + " " + lname
