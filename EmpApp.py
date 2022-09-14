@@ -96,7 +96,6 @@ def Payroll():
 
 @app.route("/fetchinfo", methods=['GET', 'POST'])
 def FetchInfo():
-    try:
         emp_id = request.form['emp_id']
         cursor = db_conn.cursor()
         fetch_info_sql = "SELECT * FROM employee WHERE emp_id = %s"
@@ -119,8 +118,6 @@ def FetchInfo():
             dt = date + " " + time
         #return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
         return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url,dt=dt,status=status)
-    except Exception as e:
-        return str(e)
 
 def show_image(bucket):
     s3_client = boto3.client('s3')
@@ -161,7 +158,7 @@ def TakeAttendance():
     att_id = emp_id + dt
     date = request.form['datetime'] + date_string
     time = request.form['datetime'] + time_string
-    insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s,%s)'
+    insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s,%s,%s)'
     cursor = db_conn.cursor()
     cursor.execute(insert_att_sql, (att_id,date,time,attendance,emp_id))
     fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
