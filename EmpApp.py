@@ -210,11 +210,11 @@ def PayrollUpdate():
     #location = request.form['location']
 
    #salary = int(request.form['salary'])
-    salary = float(request.form['salary'])
+    salary = request.form['salary']
    # deduction = int(request.form['deduction'])
-    deduction = float(request.form['deduction'])
+    deduction = request.form['deduction']
     #emp_image_file = request.files['emp_image_file']
-    update_sql = "UPDATE employee SET salary = %.2f, deduction = %.2f WHERE emp_id = %s"
+    update_sql = "UPDATE employee SET salary = %s, deduction = %s WHERE emp_id = %s"
     #update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(update_sql, (salary, deduction))
