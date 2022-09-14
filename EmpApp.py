@@ -105,7 +105,7 @@ def FetchInfo():
         (id, fname, lname, priskill, location, salary) = emp[0]
         image_url = show_image(custombucket)
 
-        att_emp_sql = "SELECT datetime, status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s AND date = %s"
+        att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s AND date = %s"
         mycursor = db_conn.cursor()
         now = datetime.now()
         date_string = now.strftime('%d/%m/%Y')
