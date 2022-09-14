@@ -204,8 +204,8 @@ def Payroll():
 @app.route("/payrollupdate", methods=['GET', 'POST'])
 def PayrollUpdate():
     emp_id = request.form['emp_id']
-   # first_name = request.form['first_name']
-  #  last_name = request.form['last_name']
+    first_name = "abc"
+    last_name = "bcd"
    # pri_skill = request.form['pri_skill']
     #location = request.form['location']
 
