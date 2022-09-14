@@ -197,7 +197,9 @@ def Payroll():
     emp = cursor.fetchall()
     (fname, lname, esalary, ededuction) = emp[0]
     emp_name = "" + fname + " " + lname
-    return render_template('EmployeePayroll.html',id=id,emp_name=emp_name)
+    emp_salary = esalary
+    emp_deduction = ededuction
+    return render_template('EmployeePayroll.html',id=id,emp_name=emp_name,emp_salary=emp_salary,emp_deduction=emp_deduction)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
