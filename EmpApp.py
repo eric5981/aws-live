@@ -151,8 +151,13 @@ def TakeAttendance():
     insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s,%s)'
     cursor = db_conn.cursor()
     cursor.execute(insert_att_sql, (att_id,dt,attendance,emp_id))
+    fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
+    cursor.execute(fetch_info_sql,(id))
+    emp = cursor.fetchall()
+    (fname, lname) = emp[0]
+    emp_name = "" + fname + " " + lname
     db_conn.commit()
-    return render_template('GetEmployeeOutput.html')
+    return render_template('AttendanceOutput.html', name=emp_name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
