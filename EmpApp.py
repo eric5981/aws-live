@@ -138,7 +138,7 @@ def Attendance():
     emp_name = "" + fname + " " + lname
     return render_template('Attendance.html',id=id,emp_name=emp_name)
 
-@app.route("/takeattendance", methods=['POST'])
+@app.route("/takeattendance", methods=['GET', 'POST'])
 def TakeAttendance():
     now = datetime.now()
     dt_string = now.strftime("%d%m%Y%H%M%S")
