@@ -140,6 +140,7 @@ def show_image(bucket):
 
 @app.route("/update", methods=['GET', 'POST'])
 def Update():
+    emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     pri_skill = request.form['pri_skill']
@@ -147,7 +148,7 @@ def Update():
     #emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
-    cursor.execute(update_sql, (first_name, last_name, pri_skill, location))
+    cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
     db_conn.commit()
     image_url = show_image(custombucket)
 
