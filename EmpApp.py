@@ -205,22 +205,13 @@ def Payroll():
 def PayrollUpdate():
     emp_id = request.form['emp_id']
     name = request.form['emp_name']
-   # pri_skill = request.form['pri_skill']
-    #location = request.form['location']
-
-   #salary = int(request.form['salary'])
     salary = request.form['salary']
-   # deduction = int(request.form['deduction'])
     deduction = request.form['deduction']
-    #emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET salary = %s, deduction = %s WHERE emp_id = %s"
-    #update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(update_sql, (salary, deduction, emp_id))
-    #cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
     db_conn.commit()
-    #image_url = show_image(custombucket)
-    return render_template('UpdateOutput.html',id=emp_id,name=name)
+    return render_template('UpdatePayrollOutput.html',id=emp_id,name=name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
