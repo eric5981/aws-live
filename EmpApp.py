@@ -154,6 +154,17 @@ def Update():
     name = first_name + " " + last_name
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
+@app.route("/payroll", methods=['GET', 'POST'])
+def Attendance():
+    id = request.form['emp_id']
+    cursor = db_conn.cursor()
+    fetch_info_sql = "SELECT first_name, last_name FROM employee WHERE emp_id = %s"
+    cursor.execute(fetch_info_sql,(id))
+    emp = cursor.fetchall()
+    (salary, lname) = emp[0]
+    emp_name = "" + fname + " " + lname
+    return render_template('EmployeePayroll.html',id=id,emp_name=emp_name)
+
 @app.route("/attendance", methods=['GET', 'POST'])
 def Attendance():
     id = request.form['emp_id']
