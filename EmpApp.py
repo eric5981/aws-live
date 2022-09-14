@@ -209,8 +209,10 @@ def PayrollUpdate():
    # pri_skill = request.form['pri_skill']
     #location = request.form['location']
 
-    salary = request.form['salary']
-    deduction = request.form['deduction']
+    salary = request.form.get('salary', type=int)
+    #salary = request.form['salary']
+    deduction = request.form.get('deduction', type=int)
+   # deduction = request.form['deduction']
     #emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET salary = %s, deduction = %s WHERE emp_id = %s"
     #update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
