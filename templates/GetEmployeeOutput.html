@@ -396,13 +396,13 @@
                     <button class="col-md-3 btn btn-block btn-info" type="submit" style="height: 40px; width: 50%; color: white; font:oblique;" formaction="/payroll" method="GET">Update Payroll</button>
 
                     <br />
-                    <label class="small mb-1 ">{{ salary }}</label>
+                    <label class="small mb-1 ">{{ "{:.2f}".format(salary) }}</label>
 
                     <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="salary" class="form-control form-control-user" value="{{ salary }}" readonly="readonly">-->
                 </div>
 
                 <div class="mb-3">
-                    <label class="medium mb-1 ">Today Attendance</label> <br />
+                    <label class="medium mb-1 ">Today's Attendance</label> <br />
                     <label class="small mb-1 ">No Record</label>
 
                     <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="attendance" class="form-control form-control-user" value="No Record" readonly="readonly">-->

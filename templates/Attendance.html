@@ -59,14 +59,14 @@
                 <div id="radiogroup" style="text-align:center">
                     <input type="radio" name="attendance" value="Present" checked> Present<br>
                     <input type="radio" name="attendance" value="Absent"> Absent<br>
-                    <input type="radio" name="attendance" value="MC"> Leave<br>
+                    <input type="radio" name="attendance" value="Leave"> Leave<br>
                 </div>
                 <br />
                 <div class="input-box-transparent">
                     <input type="hidden" name="emp_id" value="{{ id }}">
                 </div>
                 <div class="button1">
-                    <input class="btn" formaction="/takeattendance/<id>" name="save" value="Save Attendance">
+                    <input class="btn" formaction="/takeattendance" name="save" value="Save Attendance">
                 </div>
             </div>
         </font>

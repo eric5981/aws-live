@@ -3,6 +3,7 @@ from pymysql import connections
 import os
 import boto3
 from config import *
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -145,6 +146,10 @@ def TakeAttendance():
 
         attendance = request.form.getlist('attendance')
         emp_id = request.form['emp_id']
+        insert_att_sql = 'INSERT INTO attendance VALUES (%s,%s,%s)'
+        cursor = db_conn.cursor()
+        cursor.execute(insert_att_sql, (dt_string,attendance,emp_id))
+        db_conn.commit()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
