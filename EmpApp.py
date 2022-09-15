@@ -45,11 +45,7 @@ def AddEmp():
     location = request.form['location']
     salary = request.form['salary']
     emp_image_file = request.files['emp_image_file']
-    try:
-        #for item in s3_client.list_objects(Bucket=bucket)['Contents']:
-        presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': profile_upload.png}, ExpiresIn = 100)
-    except Exception as e:
-       pass
+
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s,%s)"
     cursor = db_conn.cursor()
 
@@ -88,7 +84,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', id=emp_id,name=emp_name,img=presigned_url)
+    return render_template('AddEmpOutput.html', id=emp_id,name=emp_name,img=https://ericwongtungsian-bucket.s3.amazonaws.com/profile_upload.png)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
