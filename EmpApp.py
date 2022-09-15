@@ -125,26 +125,35 @@ def FetchInfo():
 def show_image(bucket,emp_id):
     s3_client = boto3.client('s3')
     public_urls = []
+    
+
 
     #check whether the emp_id inside the image_url
-    #emp_id = request.form['emp_id']
+    #emp_id = request.form['emp_id'] 
+    #emp_id = "4"
+    #emp_id = 1
+    #emp_id = int
+    userdekey = 'emp-id-' + request.form['emp_id'] + '_image_file' 
     try:
-        for item in s3_client.list_objects(Bucket=bucket)['Contents']:
-            presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
-            if emp_id in presigned_url:
-                public_urls.append(presigned_url)
+        #for item in s3_client.list_objects(Bucket=bucket)['Contents']:
+        presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': userdekey}, ExpiresIn = 100)
+        if emp_id in presigned_url:
+            public_urls.append(presigned_url) #maybe around here de issue ba because print out all image, access key will be print out
     except Exception as e:
        pass
-   # print("[INFO] : The contents inside show_image = ", public_urls)
+    #print(public_urls)
     return public_urls
 
-@app.route("/update", methods=['GET', 'POST'])
+@app.route("/update", methods=['GET', 'POST']) #t
 def Update():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     pri_skill = request.form['pri_skill']
     location = request.form['location']
+
+    emp_image_file = request.files['emp_image_file']
+
     #emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
@@ -152,6 +161,43 @@ def Update():
     db_conn.commit()
     image_url = show_image(custombucket, emp_id)
     name = first_name + " " + last_name
+
+    #emp_image_file
+
+    if(emp_image_file.filename == ""): #no image select then no update image need
+        print("Image remain same without update") 
+    else: #got image need do stuff
+        #remove old photo in bucket 
+        s3_client = boto3.client('s3') #open connection retrieve
+        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) +  '_image_file'
+        s3_client.delete_object(Bucket=custombucket, Key = emp_image_file_name_in_s3)   #delete original old photo in bucket
+
+        #add new photo into bucket
+        s3 = boto3.resource('s3')  #connect
+        try:
+            print("Inserting New Image Into S3 Bucket......")
+            s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file) #new photo into s3 bucket
+            bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+            s3_location = (bucket_location['LocationConstraint'])
+
+            if s3_location is None: #not found
+                s3_location = ''
+            else: # found 
+                s3_location = '-' + s3_location
+            
+            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+                s3_location,
+                custombucket,
+                emp_image_file_name_in_s3)
+
+        except Exception as e:
+            return str(e) #error message
+                
+
+
+
+    print("Update Employee Successfully")
+
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
 @app.route("/attendance", methods=['GET', 'POST'])
