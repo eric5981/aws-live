@@ -337,77 +337,51 @@
             cursor: pointer;
         }
     </style>
-    <title>Take Attendance</title>
+    <title>Successfully Update</title>
 </head>
-<h1 class="mt-4">Take Attendance</h1>
+<h1 class="mt-4">UPDATE SUCCESSFUL</h1>
 
+<
 <body style="background-color: rgb(233, 245, 247);">
-    <form autocomplete="on">
+    <form action="/getemp" autocomplete="on" method="POST">
         <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
             <div class="card-body">
-                <center class="medium">
-                    <b>Take attendance for {{emp_name}}</b><br /><br />
-                </center>
-                <div id="radiogroup" class="medium mb-3" style="text-align:center">
-                    <input type="radio" name="attendance" value="Present" checked> Present<br>
-                    <input type="radio" name="attendance" value="Absent"> Absent<br>
-                    <input type="radio" name="attendance" value="Leave"> Leave<br>
-                </div>
-                <div class="input-box-transparent">
-                    <input type="hidden" name="emp_id" value="{{ id }}">
-                </div>
-                <div class="input-box-transparent">
-                    <input type="hidden" name="date" value="">
-                </div>
-                <div class="input-box-transparent">
-                    <input type="hidden" name="time" value="">
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/takeattendance" formmethod="post">Save Attendance</button>
+                <center>
+                    <h3>Following Employee payroll have been updated:</h3>
+                    <h3>ID  : {{ id }}</h3>
+                    <h3>Name: {{ name }}</h3><br>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <button class="btn btn-block btn-success" style="height: 60px; width: 100%; color: white; font:oblique;">Go Back</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
                         </div>
                     </div>
-                    <div class="col-md-3">
 
-                    </div>
-                </div>
 
-                <!--<div class="button1">
-                    <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/takeattendance" formmethod="post">Save Attendance</button>
-                </div>-->
+
+                </center>
             </div>
         </div>
 
-
-
-        <!--<font color="black" size="5" style="font-family: avenir">
-            <div class="card">
-                <center>
-                    <b>Take attendance for {{emp_name}}</b><br /><br />
-                </center>
-                <div id="radiogroup" style="text-align:center">
-                    <input type="radio" name="attendance" value="Present" checked> Present<br>
-                    <input type="radio" name="attendance" value="Absent"> Absent<br>
-                    <input type="radio" name="attendance" value="Leave"> Leave<br>
-                </div>
-                <br />
-                <div class="input-box-transparent">
-                    <input type="hidden" name="emp_id" value="{{ id }}">
-                </div>
-                <div class="input-box-transparent">
-                    <input type="hidden" name="date" value="">
-                </div>
-                <div class="input-box-transparent">
-                    <input type="hidden" name="time" value="">
-                </div>
-                <div class="button1">
-                    <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/takeattendance" formmethod="post">Save Attendance</button>
-                </div>
-            </div>
-        </font>-->
+        <!--<center>
+            <font size="5" style="font-family: avenir">
+                <body style="background-color: rgb(233, 245, 247);">
+                    <div class="card">
+                        <h1>UPDATE SUCCESSFUL</h1>
+                        <h3>Following Employee records have been updated:</h3>
+                        <h3>ID  : {{ id }}</h3>
+                        <h3>Name: {{ name }}</h3><br>
+                        <button class="btn" style="height: 45px; width: 100%; color:white; font:oblique;">Go Back</button><br><br>
+                    </div>
+                </body>
+            </font>
+        </center>-->
     </form>
 </body>
 </html>
