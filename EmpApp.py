@@ -151,6 +151,9 @@ def Update():
     last_name = request.form['last_name']
     pri_skill = request.form['pri_skill']
     location = request.form['location']
+
+    emp_image_file = request.files['emp_image_file']
+
     #emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
@@ -159,11 +162,41 @@ def Update():
     image_url = show_image(custombucket, emp_id)
     name = first_name + " " + last_name
 
-    #remove old photo in bucket 
+    #emp_image_file
+
+    if(emp_image_file == ""): #no image select then no update image need
+        print("no image select")
+    else: #got image need do stuff
+        #remove old photo in bucket 
+        s3_client = boto3.client('s3') #open connection retrieve
+        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) +  '_image_file'
+        s3_client.delete_object(Bucket=custombucket, Key = emp_image_file_name_in_s3)   #delete original old photo in bucket
+
+        #add new photo into bucket
+        s3 = boto3.resource('s3')  #connect
+        try:
+            print("Inserting New Image Into S3 Bucket......")
+            s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file) #new photo into s3 bucket
+            bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+            s3_location = (bucket_location['LocationConstraint'])
+
+            if s3_location is None: #not found
+                s3_location = ''
+            else: # found 
+                s3_location = '-' + s3_location
+            
+            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+                s3_location,
+                custombucket,
+                emp_image_file_name_in_s3)
+
+        except Exception as e:
+            return str(e) #error message
+                
 
 
-    #add new photo into bucket
 
+    print("Update Employee Successfully")
 
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
