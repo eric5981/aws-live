@@ -45,6 +45,8 @@ def AddEmp():
     location = request.form['location']
     salary = request.form['salary']
     emp_image_file = request.files['emp_image_file']
+
+    s3_client = boto3.client('s3')
     presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': profile_upload.png}, ExpiresIn = 100)
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s,%s)"
