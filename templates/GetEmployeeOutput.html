@@ -348,7 +348,7 @@
                 <div class="d-flex justify-content-center mb-1 mt-4">
                     {% for emp_image_file_name_in_s3 in image_url %}
                     <!--<img id="pic" class="avatarImg" src={{ emp_image_file_name_in_s3 }}>-->
-                    <image id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
+                    <img id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
                     <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
                     {% endfor %}
                 </div>
