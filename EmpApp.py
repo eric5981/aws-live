@@ -165,9 +165,10 @@ def Update():
     #emp_image_file
 
     if(emp_image_file == ""): #no image select then no update image need
-        print("no image select")
+        print("no image select") 
     else: #got image need do stuff
         #remove old photo in bucket 
+        print(emp_image_file)
         s3_client = boto3.client('s3') #open connection retrieve
         emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) +  '_image_file'
         s3_client.delete_object(Bucket=custombucket, Key = emp_image_file_name_in_s3)   #delete original old photo in bucket
