@@ -144,7 +144,7 @@ def show_image(bucket,emp_id):
     #print(public_urls)
     return public_urls
 
-@app.route("/update", methods=['GET', 'POST'])
+@app.route("/update", methods=['GET', 'POST']) #t
 def Update():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
