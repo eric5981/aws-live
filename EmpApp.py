@@ -158,6 +158,13 @@ def Update():
     db_conn.commit()
     image_url = show_image(custombucket, emp_id)
     name = first_name + " " + last_name
+
+    #remove old photo in bucket 
+
+
+    #add new photo into bucket
+
+
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
 @app.route("/attendance", methods=['GET', 'POST'])
