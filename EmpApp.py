@@ -186,7 +186,7 @@ def TakeAttendance():
     (fname, lname) = emp[0]
     emp_name = "" + fname + " " + lname
     db_conn.commit()
-    return render_template('AttendanceOutput.html', name=emp_name)
+    return render_template('AttendanceOutput.html', id=emp_id,name=emp_name)
 
 @app.route("/payroll", methods=['GET', 'POST'])
 def Payroll():
