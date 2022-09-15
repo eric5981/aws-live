@@ -25,7 +25,7 @@ table = 'employee'
 @app.route("/", methods=['GET', 'POST'])  #start page because got /
 def home():
     s3_client = boto3.client('s3')
-    presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': profile_upload.png}, ExpiresIn = 100)
+    presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'profile_upload.png'}, ExpiresIn = 100)
     return render_template('AddEmployee.html', img=presigned_url)
 
 #@app.route("/", methods=['GET', 'POST'])  backup
