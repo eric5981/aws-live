@@ -131,7 +131,7 @@ def show_image(bucket,emp_id):
     try:
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
-            if emp_id in presigned_url:
+            if presigned_url.find(emp_id) != -1:
                 public_urls.append(presigned_url)
     except Exception as e:
        pass
