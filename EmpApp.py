@@ -127,7 +127,7 @@ def show_image(bucket,emp_id):
     public_urls = []
 
     #check whether the emp_id inside the image_url
-    emp_id = request.form['emp_id']
+    emp_id = 1
     try:
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
