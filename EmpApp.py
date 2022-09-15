@@ -7,7 +7,6 @@ from datetime import datetime
 from datetime import pytz
 
 app = Flask(__name__)
-app.config['TIMEZONE'] = 'Asia/Malaysia'
 
 bucket = custombucket
 region = customregion
