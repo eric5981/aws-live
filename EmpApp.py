@@ -131,7 +131,7 @@ def show_image(bucket,emp_id):
     try:
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
-            if presigned_url.find(emp_id) != -1:
+            if emp_id in presigned_url:
                 public_urls.append(presigned_url)
     except Exception as e:
        pass
@@ -150,7 +150,7 @@ def Update():
     cursor = db_conn.cursor()
     cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
     db_conn.commit()
-    image_url = show_image(custombucket)
+    image_url = show_image(custombucket, emp_id)
     name = first_name + " " + last_name
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
