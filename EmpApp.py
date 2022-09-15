@@ -127,7 +127,7 @@ def show_image(bucket,emp_id):
     public_urls = []
 
     #check whether the emp_id inside the image_url
-    #emp_id = request.form['emp_id']
+    #emp_id = request.form['emp_id'] 
     #emp_id = "4"
     #emp_id = 1
     #emp_id = int
