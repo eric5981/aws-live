@@ -137,7 +137,7 @@ def show_image(bucket,emp_id):
                 public_urls.append(presigned_url)
     except Exception as e:
        pass
-   # print("[INFO] : The contents inside show_image = ", public_urls)
+    print(public_urls)
     return public_urls
 
 @app.route("/update", methods=['GET', 'POST'])
