@@ -33,7 +33,7 @@ def home():
 
 @app.route("/about", methods=['GET', 'POST'])
 def about():
-    return render_template('AboutUs.html', about=about)
+    return render_template('AboutUs.html')
 
 
 @app.route("/addemp", methods=['POST'])
@@ -126,8 +126,6 @@ def show_image(bucket,emp_id):
     s3_client = boto3.client('s3')
     public_urls = []
     
-
-
     #check whether the emp_id inside the image_url
     #emp_id = request.form['emp_id'] 
     #emp_id = "4"
