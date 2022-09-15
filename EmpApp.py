@@ -4,9 +4,9 @@ import os
 import boto3
 from config import *
 from datetime import datetime
-from datetime import pytz
 
 app = Flask(__name__)
+app.config['TIMEZONE'] = 'Asia/Kuala_Lumpur'
 
 bucket = custombucket
 region = customregion
@@ -214,8 +214,7 @@ def Attendance():
 
 @app.route("/takeattendance", methods=['GET', 'POST'])   #dunno is my issue ma, i try the attendance at 3am but it save time is 8 hours ago "14/09/2022 19:00:09 Absent"
 def TakeAttendance():
-    GMT = pytz.timezone("Asia/Malaysia")
-    now = datetime.now(GMT)
+    now = datetime.now()
     dt = now.strftime("%d%m%Y%H%M%S")
     date_string = now.strftime('%d/%m/%Y')
     time_string = now.strftime('%H:%M:%S')
