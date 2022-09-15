@@ -84,7 +84,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('AddEmpOutput.html', id=emp_id,name=emp_name)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
@@ -192,12 +192,8 @@ def Update():
 
         except Exception as e:
             return str(e) #error message
-                
-
-
 
     print("Update Employee Successfully")
-
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
 @app.route("/attendance", methods=['GET', 'POST'])
