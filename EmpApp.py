@@ -36,7 +36,7 @@ def home():
 @app.route("/about", methods=['GET', 'POST'])
 def about():
     s3_client = boto3.client('s3')
-    banner = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'our-work-03.jpg'}, ExpiresIn = 100)
+    banner = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'banner-img-02.svg'}, ExpiresIn = 100)
     team1 = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'emp-id-1_image_file'}, ExpiresIn = 100)
     team2 = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'Chuah Jia Xuan.jpg'}, ExpiresIn = 100)
     return render_template('AboutUs.html', banner=banner,team1=team1, team2=team2)
