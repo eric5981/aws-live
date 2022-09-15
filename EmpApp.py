@@ -145,7 +145,7 @@ def Update():
     last_name = request.form['last_name']
     pri_skill = request.form['pri_skill']
     location = request.form['location']
-    emp_image_file = request.files['emp_image_file']
+    #emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
