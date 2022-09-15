@@ -103,7 +103,7 @@ def FetchInfo():
         cursor.execute(fetch_info_sql,(emp_id))
         emp = cursor.fetchall()
         (id, fname, lname, priskill, location, salary, deduction) = emp[0]
-        image_url = show_image(custombucket)
+        image_url = show_image(custombucket, emp_id)
         emp_netsalary = salary - deduction
         att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s AND date = %s"
         mycursor = db_conn.cursor()
@@ -122,12 +122,12 @@ def FetchInfo():
     except Exception as e:
             return str(e)
 
-def show_image(bucket):
+def show_image(bucket,emp_id):
     s3_client = boto3.client('s3')
     public_urls = []
 
     #check whether the emp_id inside the image_url
-    emp_id = request.form['emp_id']
+    #emp_id = request.form['emp_id']
     #emp_id = "1"
     #emp_id = 1
     try:
