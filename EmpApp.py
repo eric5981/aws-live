@@ -125,6 +125,8 @@ def FetchInfo():
 def show_image(bucket,emp_id):
     s3_client = boto3.client('s3')
     public_urls = []
+    
+
 
     #check whether the emp_id inside the image_url
     #emp_id = request.form['emp_id'] 
@@ -132,10 +134,10 @@ def show_image(bucket,emp_id):
     #emp_id = 1
     #emp_id = int
     try:
-        for item in s3_client.list_objects(Bucket=bucket)['Contents']:
-            presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
-            if emp_id in presigned_url:
-                public_urls.append(presigned_url) #maybe around here de issue ba because print out all image, access key will be print out
+        #for item in s3_client.list_objects(Bucket=bucket)['Contents']:
+        presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': 'emp-id-1_image_file'}, ExpiresIn = 100)
+        if emp_id in presigned_url:
+            public_urls.append(presigned_url) #maybe around here de issue ba because print out all image, access key will be print out
     except Exception as e:
        pass
     #print(public_urls)
