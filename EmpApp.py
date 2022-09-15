@@ -103,7 +103,7 @@ def FetchInfo():
         cursor.execute(fetch_info_sql,(emp_id))
         emp = cursor.fetchall()
         (id, fname, lname, priskill, location, salary, deduction) = emp[0]
-        image_url = show_image(custombucket, 4)
+        image_url = show_image(custombucket, emp_id)
         emp_netsalary = salary - deduction
         att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s AND date = %s"
         mycursor = db_conn.cursor()
@@ -134,7 +134,7 @@ def show_image(bucket,emp_id):
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
             if emp_id in presigned_url:
-                public_urls.append(presigned_url)
+                public_urls.append(2)
     except Exception as e:
        pass
    # print("[INFO] : The contents inside show_image = ", public_urls)
