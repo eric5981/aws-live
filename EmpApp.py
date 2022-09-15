@@ -84,7 +84,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', id=emp_id,name=emp_name,img=https://ericwongtungsian-bucket.s3.amazonaws.com/profile_upload.png)
+    return render_template('AddEmpOutput.html', id=emp_id,name=emp_name,img="https://ericwongtungsian-bucket.s3.amazonaws.com/profile_upload.png")
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
