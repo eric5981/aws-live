@@ -103,7 +103,7 @@ def FetchInfo():
         cursor.execute(fetch_info_sql,(emp_id))
         emp = cursor.fetchall()
         (id, fname, lname, priskill, location, salary, deduction) = emp[0]
-        image_url = show_image(custombucket)
+        image_url = show_image(custombucket, emp_id)
         emp_netsalary = salary - deduction
         att_emp_sql = "SELECT date,time,status FROM attendance A, employee E WHERE E.emp_id = A.emp_id AND A.emp_id = %s AND date = %s"
         mycursor = db_conn.cursor()
@@ -122,12 +122,12 @@ def FetchInfo():
     except Exception as e:
             return str(e)
 
-def show_image(bucket):
+def show_image(bucket,emp_id):
     s3_client = boto3.client('s3')
     public_urls = []
 
     #check whether the emp_id inside the image_url
-    emp_id = request.form['emp_id']
+    #emp_id = request.form['emp_id']
     try:
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
@@ -145,7 +145,7 @@ def Update():
     last_name = request.form['last_name']
     pri_skill = request.form['pri_skill']
     location = request.form['location']
-    #emp_image_file = request.files['emp_image_file']
+    emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
