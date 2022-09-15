@@ -349,7 +349,6 @@
                     {% for emp_image_file_name_in_s3 in image_url %}
                     {% if emp_image_file_name_in_s3.find({{id}}) != -1 %}
                     <!--<img id="pic" class="avatarImg" src={{ emp_image_file_name_in_s3 }}>-->
-                    <ss
                     <img id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
                     <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
                     {% endif %}
