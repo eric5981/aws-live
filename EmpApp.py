@@ -4,6 +4,7 @@ import os
 import boto3
 from config import *
 from datetime import datetime
+import pytz
 
 app = Flask(__name__)
 
@@ -24,7 +25,9 @@ table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])  #start page because got /
 def home():
-    return render_template('AddEmployee.html')
+    s3_client = boto3.client('s3')
+    presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'profile_upload.png'}, ExpiresIn = 100)
+    return render_template('AddEmployee.html', img=presigned_url)
 
 #@app.route("/", methods=['GET', 'POST'])  backup
 #def home():
@@ -33,7 +36,11 @@ def home():
 
 @app.route("/about", methods=['GET', 'POST'])
 def about():
-    return render_template('AboutUs.html', about=about)
+    s3_client = boto3.client('s3')
+    banner = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'banner-img-02.svg'}, ExpiresIn = 100)
+    team1 = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'emp-id-3_image_file'}, ExpiresIn = 100)
+    team2 = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'Chuah Jia Xuan.jpg'}, ExpiresIn = 100)
+    return render_template('AboutUs.html', banner=banner,team1=team1, team2=team2)
 
 
 @app.route("/addemp", methods=['POST'])
@@ -84,7 +91,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('AddEmpOutput.html', id=emp_id,name=emp_name)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
@@ -126,8 +133,6 @@ def show_image(bucket,emp_id):
     s3_client = boto3.client('s3')
     public_urls = []
     
-
-
     #check whether the emp_id inside the image_url
     #emp_id = request.form['emp_id'] 
     #emp_id = "4"
@@ -192,12 +197,8 @@ def Update():
 
         except Exception as e:
             return str(e) #error message
-                
-
-
 
     print("Update Employee Successfully")
-
     return render_template('UpdateOutput.html',id=emp_id,name=name)
 
 @app.route("/attendance", methods=['GET', 'POST'])
@@ -213,7 +214,8 @@ def Attendance():
 
 @app.route("/takeattendance", methods=['GET', 'POST'])   #dunno is my issue ma, i try the attendance at 3am but it save time is 8 hours ago "14/09/2022 19:00:09 Absent"
 def TakeAttendance():
-    now = datetime.now()
+    GMT = pytz.timezone('Asia/Kuala_Lumpur')
+    now = datetime.now(GMT)
     dt = now.strftime("%d%m%Y%H%M%S")
     date_string = now.strftime('%d/%m/%Y')
     time_string = now.strftime('%H:%M:%S')
