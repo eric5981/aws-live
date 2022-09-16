@@ -38,7 +38,7 @@ def home():
 def about():
     s3_client = boto3.client('s3')
     banner = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'banner-img-02.svg'}, ExpiresIn = 100)
-    team1 = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'emp-id-3_image_file'}, ExpiresIn = 100)
+    team1 = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'Eric Wong Tung Sian.jpg'}, ExpiresIn = 100)
     team2 = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'Chuah Jia Xuan.jpg'}, ExpiresIn = 100)
     return render_template('AboutUs.html', banner=banner,team1=team1, team2=team2)
 
@@ -212,7 +212,7 @@ def Attendance():
     emp_name = "" + fname + " " + lname
     return render_template('Attendance.html',id=id,emp_name=emp_name)
 
-@app.route("/takeattendance", methods=['GET', 'POST'])   #dunno is my issue ma, i try the attendance at 3am but it save time is 8 hours ago "14/09/2022 19:00:09 Absent"
+@app.route("/takeattendance", methods=['GET', 'POST'])  
 def TakeAttendance():
     GMT = pytz.timezone('Asia/Kuala_Lumpur')
     now = datetime.now(GMT)
