@@ -34,17 +34,6 @@
                 border-color: #169b6b;
             }
 
-        .btn-danger {
-            color: #fff;
-            background-color: #e74a3b;
-            border-color: #e74a3b;
-        }
-
-            .btn-danger:hover {
-                color: #fff;
-                background-color: #e02d1b;
-                border-color: #d52a1a;
-            }
 
         .btn-info { /* blue button */
             color: #fff;
@@ -362,15 +351,14 @@
                     <img id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
                     <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
                     {% endfor %}
-                    <button class="btn btn-block btn-danger" type="submit" style="height: 45px; width: 20%; color: white; font:oblique;" formaction="/" formmethod="get">Delete</button>
                 </div>
                 <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="emp_id" class="form-control form-control-user" value="{{ id }}">-->
+
                 <div class="mb-3">
                     <label class="medium mb-1 ">Employee ID</label><br />
                     <label hidden class="small mb-1" name="emp_id">{{ id }}</label>
-                    <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="hidden" name="emp_id" autofocus size="40" value="{{ id }}">
+                    <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="hidden" name="emp_id" autofocus size="40" value="{{ id }}" >
                 </div>
-
 
                 <div class="row gx-3">
                     <div class="col-md-6">
@@ -418,8 +406,8 @@
                     <label class="small mb-1 ">{{dt}} {{status}}</label>
                     <!--{% if att_result != NULL %}-->
                     <!--{% else %}
-        <label class="small mb-1 ">No Record</label>
-        {% endif %}-->
+    <label class="small mb-1 ">No Record</label>
+    {% endif %}-->
                     <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="attendance" class="form-control form-control-user" value="No Record" readonly="readonly">-->
                 </div>
 
