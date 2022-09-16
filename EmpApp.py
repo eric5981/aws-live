@@ -212,7 +212,7 @@ def Attendance():
     emp_name = "" + fname + " " + lname
     return render_template('Attendance.html',id=id,emp_name=emp_name)
 
-@app.route("/takeattendance", methods=['GET', 'POST'])   #dunno is my issue ma, i try the attendance at 3am but it save time is 8 hours ago "14/09/2022 19:00:09 Absent"
+@app.route("/takeattendance", methods=['GET', 'POST'])  
 def TakeAttendance():
     GMT = pytz.timezone('Asia/Kuala_Lumpur')
     now = datetime.now(GMT)
