@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -311,9 +312,6 @@
         .justify-content-center {
             justify-content: center !important;
         }
-        .justify-content-end {
-            justify-content: flex-end !important;
-        }
 
         small,
         .small {
@@ -338,141 +336,38 @@
             background-color: white;
             cursor: pointer;
         }
-
-        .btn-danger {
-            color: #fff;
-            background-color: #e74a3b;
-            border-color: #e74a3b;
-        }
-
-            .btn-danger:hover {
-                color: #fff;
-                background-color: #e02d1b;
-                border-color: #d52a1a;
-            }
-
     </style>
-
-    <title>Employee Information</title>
+    <title>Successfully Delete</title>
 </head>
-<h1 class="mt-4">Employee Information</h1>
+<h1 class="mt-4">DELETE SUCCESSFUL</h1>
 
-<body style="background-color: rgb(233, 245, 247) ">
-    <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
-        <div class="card-body">
-            <form autocomplete="on" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                <div class="d-flex justify-content-center mb-1 mt-4 col-md-4"><!-- col-md-4-->
-                    {% for emp_image_file_name_in_s3 in image_url %}-
-                    <!--<img id="pic" class="avatarImg" src={{ emp_image_file_name_in_s3 }}>-->
-                    <img id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
-                    <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
-                    {% endfor %}
-                </div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-2">
-                        <button class="btn btn-block btn-danger" type="submit" style="height: 40px; width: 100%; color: white; font:oblique;" formaction="/delete" formmethod="post">Delete Employee</button>
-                        <!--<a href="/deleteemp" class="btn btn-danger" style="text-decoration: none; color: white; height: 40px; width: 100%; color: white; font: oblique; text-align:center;">Delete</a>-->
-                    </div>
+<
+<body style="background-color: rgb(233, 245, 247);">
+    <form action="/getemp" autocomplete="on" method="POST">
+        <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
+            <div class="card-body">
+                <center>
+                    <h3>Following Employee have been deleted:</h3>
+                    <h3>ID  : {{ id }}</h3>
+                    <h3>Name: {{ name }}</h3><br>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <button class="btn btn-block btn-success" style="height: 45px; width: 100%; color: white; font: oblique;">Go Back</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
 
-                    <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="emp_id" class="form-control form-control-user" value="{{ id }}">-->
-                </div>
-                <div class="mb-3">
-                    <label class="medium mb-1 ">Employee ID</label><br />
-                    <label hidden class="small mb-1" name="emp_id">{{ id }}</label>
-                    <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="hidden" name="emp_id" autofocus size="40" value="{{ id }}">
-                </div>
-
-                <div class="row gx-3">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="medium mb-1">First Name</label>
-                            <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="first_name" class="form-control form-control-user" value="{{ fname }}">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="medium mb-1">Last Name</label>
-                            <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="last_name" class="form-control form-control-user" value="{{ lname }}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="medium mb-1">Primary Skills</label>
-                            <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="pri_skill" class="form-control form-control-user" value="{{ skill }}">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="medium mb-1">Location</label>
-                            <input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="location" class="form-control form-control-user" value="{{ location }}">
-                        </div>
-                    </div>
-                </div>
-                <!--Image URL: <br> {{ image_url }} <br><br>-->
-
-                <div class="mb-3">
-                    <label class="medium mb-1 ">Net Salary</label>
-                    <button class="col-md-3 btn btn-block btn-info" type="submit" style="height: 40px; width: 50%; color: white; font:oblique;" formaction="/payroll" formmethod="post">Update Payroll</button>
-
-                    <br />
-                    <label class="small mb-1 ">RM {{ "{:.2f}".format(emp_netsalary) }}</label>
-
-                    <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="salary" class="form-control form-control-user" value="{{ salary }}" readonly="readonly">-->
-                </div>
-
-                <div class="mb-3">
-                    <label class="medium mb-1 ">Today's Attendance</label> <br />
-                    <label class="small mb-1 ">{{dt}} {{status}}</label>
-                    <!--{% if att_result != NULL %}-->
-                    <!--{% else %}
-                    <label class="small mb-1 ">No Record</label>
-                    {% endif %}-->
-                    <!--<input style="height: 25px; font-size: 14pt; color: grey; border-radius: 5px" type="text" name="attendance" class="form-control form-control-user" value="No Record" readonly="readonly">-->
-                </div>
 
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/update" formmethod="post">Update Information</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/attendance" formmethod="post">Take Attendance</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <button class="btn btn-block btn-success" type="submit" style="height: 60px; width: 100%; color: white; font:oblique;" formaction="/" formmethod="get">Back to Update Database Page</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+
+                </center>
+            </div>
         </div>
-    </div>
-
+    </form>
 </body>
 </html>
-
-<script type="text/javascript">
-    var avatar = document.getElementById("SprofileAvatar");
-    var fileuploadctrl = document.getElementById("FileUpload1");
-    avatar.onclick = function () {
-        fileuploadctrl.click();
-    }
-    function showPreview(input) {
-        if (input.files && input.files[0]) {
-            var ImageDir = new FileReader();
-            ImageDir.onload = function (e) {
-                avatar.setAttribute('src', e.target.result);
-            }
-            ImageDir.readAsDataURL(input.files[0]);
-        }
-    }
-</script>

@@ -149,7 +149,24 @@ def show_image(bucket,emp_id):
     #print(public_urls)
     return public_urls
 
-@app.route("/update", methods=['GET', 'POST']) #t
+@app.route("/deleteemp", methods=['GET', 'POST'])
+def Delete():
+    emp_id = request.form['emp_id']
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    del_sql = "DELETE FROM employee WHERE emp_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(del_sql, (emp_id))
+    db_conn.commit()
+    name = first_name + " " + last_name
+
+    s3_client = boto3.client('s3')
+    emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+    s3_client.delete_object(Bucket=custombucket, Key = emp_image_file_name_in_s3)
+    print("Delete Employee Successfully")
+    return render_template('DeleteOutput.html', id=emp_id, name=name)
+
+@app.route("/update", methods=['GET', 'POST']) 
 def Update():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
