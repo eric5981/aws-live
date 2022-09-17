@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">-->
-    <!--<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">-->
-    <!--<link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/sb-admin-2.css" rel="stylesheet">-->
-    <!--<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">-->
-
-
     <style type="text/css">
         .btn { /* button design no border  */
             display: inline-block;
@@ -343,10 +336,9 @@
             }
     </style>
     <title>Add Employee Information</title>
-
-
 </head>
 <h1 class="mt-4 ">Employee Database</h1>
+
 <body style="background-color: rgb(233, 245, 247) ">
     <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
         <div class="card-body">
@@ -359,18 +351,16 @@
             </form>
             <form action="/addemp" autocomplete="on" method="POST" enctype="multipart/form-data">
                 <div class="d-flex justify-content-center mb-1 mt-4">
-                    <image id="SprofileAvatar" class="avatarImg" src="{{img}}" />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
+                    <image id="SprofileAvatar" class="avatarImg" src="{{img}}" />
                     <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
                 </div>
                 <div class="d-flex justify-content-center">
                     <label class="medium mb-1 ">Click here to upload image</label>
                 </div>
-
                 <div class="mb-3">
                     <label class="medium mb-1 ">Employee ID</label>
                     <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="number" name="emp_id" autofocus size="40">
                 </div>
-
                 <div class="row gx-3">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -385,7 +375,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row gx-3">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -400,7 +389,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mb-3">
                     <label class="medium mb-1 ">Basic Salary</label>
                     <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="number" name="salary" autofocus size="40">
@@ -411,39 +399,13 @@
                 <div class="col-md-12 d-flex justify-content-center" style="display:inline;">
                     <div class="col-md-6">
                         <a href="/about" class="btn btn-info" style="text-decoration: none; color: white; height: 45px; width: 100%; color: white; font: oblique; text-align:center;">About Us</a>
-                    </div>
-                    
+                    </div>            
                 </div>
             </form>
-
-
         </div>
-
-        <!--<div class="d-flex flex-column-reverse bd-highlight">
-            <div class="p-2 bd-highlight">Flex item 1</div>
-            <div class="p-2 bd-highlight">Flex item 2</div>
-            <div class="p-2 bd-highlight">Flex item 3</div>
-        </div>
-
-        <div class="d-flex justify-content-start">...</div>
-        <div class="d-flex justify-content-end">...</div>
-        <div class="d-flex justify-content-center">...</div>
-        <div class="d-flex justify-content-between">...</div>
-        <div class="d-flex justify-content-around">...</div>-->
-
-
-
-
     </div>
-
-
 </body>
 </html>
-
-
-
-
-
 
 <script type="text/javascript">
     var avatar = document.getElementById("SprofileAvatar");
@@ -461,23 +423,3 @@
         }
     }
 </script>
-
-<!-- Bootstrap core JavaScript-->
-<!--<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
-
-<!-- Core plugin JavaScript-->
-<!--<script src="vendor/jquery-easing/jquery.easing.min.js"></script>-->
-
-<!-- Custom scripts for all pages-->
-<!--<script src="js/sb-admin-2.min.js"></script>-->
-
-<!-- Page level plugins -->
-<!--<script src="vendor/chart.js/Chart.min.js"></script>-->
-<!-- Page level custom scripts -->
-<!--<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
-
-
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>-->

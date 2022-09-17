@@ -311,6 +311,7 @@
         .justify-content-center {
             justify-content: center !important;
         }
+
         .justify-content-end {
             justify-content: flex-end !important;
         }
@@ -350,24 +351,23 @@
                 background-color: #e02d1b;
                 border-color: #d52a1a;
             }
-
     </style>
-
     <title>Employee Information</title>
 </head>
 <h1 class="mt-4">Employee Information</h1>
+
 <body style="background-color: rgb(233, 245, 247) ">
     <div class="card shadow mb-4" style="background-color: rgb(227,233,252);">
         <div class="card-body">
             <form autocomplete="on" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4"></div>
-                <div class="d-flex justify-content-center mb-1 mt-4 col-md-4">
-                    {% for emp_image_file_name_in_s3 in image_url %}
-                    <img id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />    <!--upload profile image part,  here src might got issue try run in python and cannot load-->
-                    <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
-                    {% endfor %}
-                </div>
+                    <div class="d-flex justify-content-center mb-1 mt-4 col-md-4">
+                        {% for emp_image_file_name_in_s3 in image_url %}
+                        <img id="SprofileAvatar" class="avatarImg" src={{ emp_image_file_name_in_s3 }} />
+                        <input type="file" name="emp_image_file" id="FileUpload1" style="display:none;" onchange="showPreview(this)" />
+                        {% endfor %}
+                    </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-2">
                         <button class="btn btn-block btn-danger" type="submit" style="height: 40px; width: 100%; color: white; font:oblique;" formaction="/delete" formmethod="post">Delete</button>
@@ -378,7 +378,6 @@
                     <label hidden class="small mb-1" name="emp_id">{{ id }}</label>
                     <input style="height:25px;font-size:14pt; color:grey;border-radius:5px" class="form-control form-control-user" type="hidden" name="emp_id" autofocus size="40" value="{{ id }}">
                 </div>
-
                 <div class="row gx-3">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -393,7 +392,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -414,13 +412,10 @@
                     <br />
                     <label class="small mb-1 ">RM {{ "{:.2f}".format(emp_netsalary) }}</label>
                 </div>
-
                 <div class="mb-3">
                     <label class="medium mb-1 ">Today's Attendance</label> <br />
                     <label class="small mb-1 ">{{dt}} {{status}}</label>
                 </div>
-
-
                 <div class="row">
                     <div class="col-md-4">
                         <div class="mb-3">
@@ -441,7 +436,6 @@
             </form>
         </div>
     </div>
-
 </body>
 </html>
 

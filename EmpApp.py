@@ -29,10 +29,6 @@ def home():
     presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': custombucket, 'Key': 'profile_upload.png'}, ExpiresIn = 100)
     return render_template('AddEmployee.html', img=presigned_url)
 
-#@app.route("/", methods=['GET', 'POST'])  backup
-#def home():
-#    return render_template('AddEmp.html')
-
 
 @app.route("/about", methods=['GET', 'POST'])
 def about():
@@ -97,9 +93,6 @@ def AddEmp():
 def GetEmp():
     return render_template('GetEmployee.html') 
 
-#@app.route("/payroll", methods=['GET', 'POST'])
-#def Payroll():
-#    return render_template('EmployeePayroll.html') 
 
 @app.route("/fetchinfo", methods=['GET', 'POST'])
 def FetchInfo():
@@ -124,7 +117,6 @@ def FetchInfo():
             att_result = mycursor.fetchall()
             (date,time,status) = att_result[-1]
             dt = date + " " + time
-        #return render_template('GetEmpOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,salary=salary,image_url=image_url)
         return render_template('GetEmployeeOutput.html',id=id,fname=fname,lname=lname,skill=priskill,location=location,emp_netsalary=emp_netsalary,image_url=image_url,dt=dt,status=status)
     except Exception as e:
             return str(e)
@@ -133,20 +125,13 @@ def show_image(bucket,emp_id):
     s3_client = boto3.client('s3')
     public_urls = []
     
-    #check whether the emp_id inside the image_url
-    #emp_id = request.form['emp_id'] 
-    #emp_id = "4"
-    #emp_id = 1
-    #emp_id = int
     userdekey = 'emp-id-' + request.form['emp_id'] + '_image_file' 
     try:
-        #for item in s3_client.list_objects(Bucket=bucket)['Contents']:
         presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': userdekey}, ExpiresIn = 100)
         if emp_id in presigned_url:
-            public_urls.append(presigned_url) #maybe around here de issue ba because print out all image, access key will be print out
+            public_urls.append(presigned_url)
     except Exception as e:
        pass
-    #print(public_urls)
     return public_urls
 
 @app.route("/delete", methods=['GET', 'POST'])
@@ -176,7 +161,6 @@ def Update():
 
     emp_image_file = request.files['emp_image_file']
 
-    #emp_image_file = request.files['emp_image_file']
     update_sql = "UPDATE employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(update_sql, (first_name, last_name, pri_skill, location,emp_id))
@@ -184,7 +168,6 @@ def Update():
     image_url = show_image(custombucket, emp_id)
     name = first_name + " " + last_name
 
-    #emp_image_file
 
     if(emp_image_file.filename == ""): #no image select then no update image need
         print("Image remain same without update") 
