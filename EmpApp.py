@@ -139,6 +139,14 @@ def Delete():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
+
+    #delete attendance as this is foreign key of employee table
+    cursor = db_conn.cursor()
+    del_attsql = "DELETE FROM attendance WHERE emp_id = %s"
+    cursor.execute(del_attsql, (emp_id))
+    db_conn.commit()
+
+
     del_sql = "DELETE FROM employee WHERE emp_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(del_sql, (emp_id))
