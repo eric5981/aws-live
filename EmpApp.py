@@ -149,7 +149,7 @@ def show_image(bucket,emp_id):
     #print(public_urls)
     return public_urls
 
-@app.route("/deleteemp", methods=['GET', 'POST'])
+@app.route("/delete", methods=['GET', 'POST'])
 def Delete():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
